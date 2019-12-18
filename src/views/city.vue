@@ -1,5 +1,5 @@
 <template>
-	<div class="city-lp">
+	<div class="city">
 		<h2>{{$route.params.city}}</h2>
 		<ul v-if="results && results.length">
 			<li v-for="(item, idx) in results" :key="idx">
@@ -14,11 +14,15 @@
 
 <script>
     export default {
-        name: 'city-lp',
+        name: 'city',
         props: {
             results: Array
-        },
+        }
     }
 </script>
 
-<style lang='scss' src='./city-lp.scss'/>
+<style lang='scss'>
+	.city {
+
+	}
+</style>

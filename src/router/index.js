@@ -1,15 +1,15 @@
-import App from "../App";
-import CityLp from '../components/city-lp'
+import IndexView from "../views/index"
+import CityView from '../views/city'
 
 export default [
     {
         name: 'index',
         path: '/',
-        component: App
+        component: IndexView
     },
     {
         name: 'city',
         path: '/:city',
-        component: CityLp
+        component: CityView
     }
 ]

@@ -1,39 +1,9 @@
 <script>
-  import MainScreen from "@/components/MainScreen";
   export default {
     name: 'app',
-    components: {MainScreen},
     data() {
       return {
         results: [],
-        options: {
-          delimiter: ",",	// auto-detect
-          newline: "\r\n",	// auto-detect
-          quoteChar: '"',
-          escapeChar: '"',
-          header: false,
-          transformHeader: undefined,
-          dynamicTyping: false,
-          preview: 0,
-          encoding: "",
-          worker: false,
-          comments: false,
-          step: undefined,
-          complete: undefined,
-          error: undefined,
-          download: false,
-          downloadRequestHeaders: undefined,
-          skipEmptyLines: false,
-          chunk: undefined,
-          fastMode: undefined,
-          beforeFirstChunk: undefined,
-          withCredentials: undefined,
-          transform: undefined,
-          delimitersToGuess: [',', '\t', '|', ';']
-
-        },
-        readyState: '',
-        status: 0
       }
     },
     methods: {
@@ -87,15 +57,18 @@
 
 <template>
   <div class="app" id="app">
-    <MainScreen />
+    <router-view :results="results"/>
   </div>
 </template>
 
 <style lang="scss">
 html {
-  overflow: hidden;
+  /*overflow: hidden;*/
+  /* ты полностью скролл на сайте выключил */
 }
+html,
 body {
+  padding: 0;
   margin: 0;
 }
 .app {
