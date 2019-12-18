@@ -48,8 +48,6 @@
           await this.CSVtoJSON(result);
           const name = this.$route.params.city;
           this.results = this.filterByCity(name);
-          // eslint-disable-next-line no-console
-          console.log(this.results);
         });
     }
   }
