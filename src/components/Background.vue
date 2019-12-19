@@ -33,14 +33,6 @@
 			height: 100%;
 			left: 50%;
 			transform: translateX(-50%);
-			&:before {
-				content: 'From LA';
-				position: absolute;
-				z-index: 3;
-				font-size: 166px;
-				color: #918b8c;
-				letter-spacing: 1px;
-			}
 		}
 
 		&__clouds {
