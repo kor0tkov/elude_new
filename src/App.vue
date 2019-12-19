@@ -61,8 +61,6 @@
 
 <style lang="scss">
 html {
-  /*overflow: hidden;*/
-  /* ты полностью скролл на сайте выключил */
 }
 html,
 body {
