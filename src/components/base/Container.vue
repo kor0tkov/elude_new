@@ -13,6 +13,9 @@
 <style lang="scss">
 .container {
   @media only screen and (min-width: 769px) {
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
     padding: 0 200px;
   }
   @media only screen and (max-width: 768px) {

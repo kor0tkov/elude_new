@@ -63,7 +63,9 @@
 html {
 }
 html,
-body {
+body,
+h1,h2,h3,
+p {
   padding: 0;
   margin: 0;
 }

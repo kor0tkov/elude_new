@@ -37,7 +37,6 @@ export default {
   flex-direction: column;
   justify-content: space-between;
   position: relative;
-  width: 180px;
   height: 220px;
   background-color: #ffffff;
   border-radius: 4px;
@@ -45,6 +44,13 @@ export default {
   box-sizing: border-box;
   padding: 20px;
   user-select: none;
+  @media only screen and (min-width: 769px) {
+    width: 180px;
+  }
+  @media only screen and (max-width: 768px) {
+    width: 170px;
+    flex: 0 0 auto;
+  }
   &__date {
     display: block;
     font-size: 14px;
@@ -58,7 +64,7 @@ export default {
   &__city {
     display: block;
     font-size: 32px;
-    font-weight: bold;
+    font-weight: 700;
     color: #706163;
     max-height: 112px;
     overflow: hidden;
@@ -70,7 +76,7 @@ export default {
   }
   &__cost {
     font-size: 24px;
-    font-weight: bold;
+    font-weight: 800;
     letter-spacing: 0.5px;
     color: #ac4245;
     opacity: 0.9;
@@ -86,6 +92,10 @@ export default {
     background-position: center;
     background-repeat: no-repeat;
     background-image: url('../../src/assets/img/buttons/next.svg');
+    transition: 0.15s;
+    &:hover {
+      background-image: url('../../src/assets/img/buttons/next-hover.svg');
+    }
   }
 }
 </style>

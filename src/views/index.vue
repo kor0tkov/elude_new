@@ -1,9 +1,10 @@
 <script>
 	import MainScreen from "../components/MainScreen";
+	import Join from "@/components/Join";
 
 	export default {
 		name: 'index',
-		components: {MainScreen},
+		components: {Join, MainScreen},
 		props: {
 			results: Array
 		}
@@ -12,11 +13,17 @@
 
 <template>
 	<div class="index">
-		<MainScreen/>
+		<MainScreen class="index__main-screen" />
+		<Join class="index__join" />
 	</div>
 </template>
 
 <style lang='scss'>
-	.index {
+.index {
+	@import url('https://fonts.googleapis.com/css?family=Montserrat:300,500,600,700,800&display=swap');
+	font-family: 'Montserrat', sans-serif;
+	&__join {
+		position: relative;
 	}
+}
 </style>
