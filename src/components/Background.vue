@@ -26,6 +26,7 @@ export default {
   right: 0;
   bottom: 0;
   left: 0;
+	overflow: hidden;
   &__plane {
     position: absolute;
     z-index: 4;
@@ -45,7 +46,8 @@ export default {
 			width: 160%;
 			min-height: 310px;
 			top: 18vh;
-			right: -10px;
+			right: 0;
+			transform: translateX(10px);
 		}
   }
 

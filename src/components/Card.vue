@@ -44,6 +44,7 @@ export default {
   box-sizing: border-box;
   padding: 20px;
   user-select: none;
+  outline: none;
   @media only screen and (min-width: 769px) {
     width: 180px;
   }

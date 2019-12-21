@@ -24,6 +24,7 @@ export default {
   padding: 10px 40px;
   cursor: pointer;
   user-select: none;
+  outline: none;
   transition: 0.15s;
   &:hover {
     background-color: #c34b4e;

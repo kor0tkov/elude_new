@@ -22,6 +22,8 @@
 .index {
 	@import url('https://fonts.googleapis.com/css?family=Montserrat:300,500,600,700,800&display=swap');
 	font-family: 'Montserrat', sans-serif;
+	&__main-screen {
+	}
 	&__join {
 		position: relative;
 	}

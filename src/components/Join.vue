@@ -2,11 +2,13 @@
 import Background from "@/components/Background";
 import Container from "@/components/base/Container";
 import Button from "@/components/base/Button";
+import Modal from "@/components/Modal";
 export default {
   name: "Join",
-  components: {Button, Container, Background},
+  components: {Button, Container, Background, Modal},
   data() {
     return {
+      showModal: false,
       text: 'Stay tuned for the app launch that will include flight and hotel packages as well as other cities will be added to the flight deals coming soon! ',
     };
   },
@@ -14,17 +16,22 @@ export default {
 </script>
 
 <template>
-  <div class="join">
+  <div id="join" class="join">
     <Background class="join__background" />
     <Container class="join__container">
-      <!--<div class="join__img" />-->
       <img src="../../src/assets/img/background/phone-2x.png" class="join__img" />
       <div class="join__content">
         <h2 class="join__title">Join Us</h2>
         <p class="join__text">{{ text }}</p>
-        <Button text="I'm In, Let's Go!" class="join__button" />
+        <Button @click.native="showModal = !showModal" text="I'm In, Let's Go!" class="join__button" />
       </div>
     </Container>
+    <Modal
+      v-if="showModal"
+      title="Join Us"
+      subtitle="Keep up-to-date and be amongst the first to get access our platform."
+      class="join__modal"
+    />
   </div>
 </template>
 
@@ -47,6 +54,7 @@ export default {
     }
     @media only screen and (max-width: 768px) {
       flex-direction: column;
+      padding-top: 40px;
     }
   }
   &__img {
@@ -96,6 +104,8 @@ export default {
       height: 50px;
       font-size: 16px;
     }
+  }
+  &__modal {
   }
 }
 </style>

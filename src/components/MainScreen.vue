@@ -18,6 +18,17 @@ export default {
       ],
     };
   },
+  methods: {
+    onScrollToEvents(selector) {
+      const element = document.querySelector(selector);
+      const offsetPosition = element.offsetTop;
+      window.scrollTo({
+        top: offsetPosition,
+        left: 0,
+        behavior: 'smooth',
+      });
+    },
+  },
 };
 </script>
 
@@ -39,9 +50,13 @@ export default {
           />
         </div>
         <SocialIcons class="main-screen__social-icons"/>
-        <Button text="What else ya got?" class="main-screen__button" />
+        <Button
+          text="What else ya got?"
+          class="main-screen__button"
+          @click.native.prevent="onScrollToEvents('#join')"
+        />
       </div>
-      <div class="main-screen__arrow"></div>
+      <div class="main-screen__arrow" @click.prevent="onScrollToEvents('#join')"></div>
     </Container>
   </div>
 </template>
@@ -83,7 +98,8 @@ export default {
     }
     @media only screen and (max-width: 768px) {
       font-size: 100px;
-      top: 10vh;
+      line-height: 114px;
+      top: 8vh;
     }
   }
   &__section {

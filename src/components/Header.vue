@@ -3,14 +3,29 @@ import Button from "@/components/base/Button";
 import SocialIcons from "@/components/SocialIcons";
 export default {
   name: "Header",
-  components: {SocialIcons, Button}
-}
+  components: {SocialIcons, Button},
+  methods: {
+    onScrollToEvents(selector) {
+      const element = document.querySelector(selector);
+      const offsetPosition = element.offsetTop;
+      window.scrollTo({
+        top: offsetPosition,
+        left: 0,
+        behavior: 'smooth',
+      });
+    },
+  },
+};
 </script>
 
 <template>
   <div class="header">
     <img src="../assets/img/logo/logo.svg" class="header__logo" />
-    <Button text="What else ya got?" class="header__button" />
+    <Button
+      text="What else ya got?"
+      class="header__button"
+      @click.native.prevent="onScrollToEvents('#join')"
+    />
     <SocialIcons class="header__social-icons" />
   </div>
 </template>
