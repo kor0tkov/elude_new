@@ -36,7 +36,7 @@
     font-family: Montserrat, sans-serif;
     width: 100%;
     font-size: 18px;
-    font-weight: 500;
+    font-weight: 700;
     letter-spacing: 0.2px;
     color: #333333;
     outline: none;

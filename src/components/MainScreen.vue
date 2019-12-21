@@ -34,7 +34,10 @@ export default {
 
 <template>
   <div class="main-screen">
-    <Background plane="true" class="main-screen__background" />
+    <Background
+      main-screen="true"
+      class="main-screen__background"
+    />
     <Container class="main-screen__container">
       <Header class="main-screen__header"/>
       <div class="main-screen__title">From LA</div>
@@ -85,7 +88,7 @@ export default {
   }
   &__title {
     position: absolute;
-    z-index: 3;
+    z-index: 2;
     font-weight: 800;
     opacity: 0.5;
     color: #918b8c;
@@ -100,6 +103,21 @@ export default {
       font-size: 100px;
       line-height: 114px;
       top: 8vh;
+    }
+    animation-name: title;
+    animation-duration: 3s;
+    animation-iteration-count: 1;
+    animation-direction: alternate;
+    animation-timing-function: ease;
+    @keyframes title {
+      from {
+        opacity: 0;
+        left: -100%;
+      }
+      to {
+        opacity: 0.5;
+        left: 200px;
+      }
     }
   }
   &__section {

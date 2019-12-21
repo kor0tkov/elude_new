@@ -17,7 +17,7 @@ export default {
 
 <template>
   <div id="join" class="join">
-    <Background class="join__background" />
+    <Background join="true" class="join__background" />
     <Container class="join__container">
       <img src="../../src/assets/img/background/phone-2x.png" class="join__img" />
       <div class="join__content">
@@ -80,7 +80,7 @@ export default {
   }
   &__title {
     font-size: 60px;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 0.2px;
     line-height: 1.33;
     color: #403e3e;
