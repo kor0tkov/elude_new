@@ -20,7 +20,7 @@ export default {
 		<div v-if="mainScreen" class="background__clouds background__clouds_0"></div>
 		<div v-if="join" class="background__clouds background__clouds_1"></div>
 		<div v-if="mainScreen" class="background__clouds background__clouds_2"></div>
-		<div class="background__clouds background__clouds_3"></div>
+		<div v-if="mainScreen" class="background__clouds background__clouds_3"></div>
 	</div>
 </template>
 
@@ -98,6 +98,8 @@ export default {
       z-index: 1;
       height: 100%;
       width: 100%;
+			//background-size: 100% 33%;
+			//background-position: top;
       background-image: url('../../src/assets/img/background/clouds-1.jpg');
     }
 
@@ -109,7 +111,7 @@ export default {
 			animation-name: clouds-2;
 			animation-duration: 10s;
 			animation-iteration-count: infinite;
-			animation-direction: alternate;
+			//animation-direction: alternate;
 			animation-timing-function: linear;
 			@keyframes clouds-2 {
 				from {
@@ -133,6 +135,7 @@ export default {
 			animation-iteration-count: infinite;
 			//animation-direction: alternate;
 			animation-timing-function: linear;
+			position: fixed;
 			@keyframes clouds-3 {
 				from {
 					background-position: left;

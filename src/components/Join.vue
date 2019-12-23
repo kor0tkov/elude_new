@@ -23,11 +23,12 @@ export default {
       <div class="join__content">
         <h2 class="join__title">Join Us</h2>
         <p class="join__text">{{ text }}</p>
-        <Button @click.native="showModal = !showModal" text="I'm In, Let's Go!" class="join__button" />
+        <Button @click="showModal = true" text="I'm In, Let's Go!" class="join__button" />
       </div>
     </Container>
     <Modal
       v-if="showModal"
+      @close="showModal = false"
       title="Join Us"
       subtitle="Keep up-to-date and be amongst the first to get access our platform."
       class="join__modal"

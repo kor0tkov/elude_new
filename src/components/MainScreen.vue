@@ -7,7 +7,14 @@ import SocialIcons from "@/components/SocialIcons";
 import Button from "@/components/base/Button";
 export default {
   name: "mainScreen",
-  components: {Button, SocialIcons, Card, Header, Background, Container},
+  components: {
+    Button,
+    SocialIcons,
+    Card,
+    Header,
+    Background,
+    Container
+  },
   data() {
     return {
       cards: [
@@ -28,6 +35,9 @@ export default {
         behavior: 'smooth',
       });
     },
+    removeFromList(id) {
+      this.cards = this.cards.filter(item => item.id !== id);
+    },
   },
 };
 </script>
@@ -35,7 +45,7 @@ export default {
 <template>
   <div class="main-screen">
     <Background
-      main-screen="true"
+      v-bind:main-screen="true"
       class="main-screen__background"
     />
     <Container class="main-screen__container">
@@ -49,6 +59,8 @@ export default {
             :date="item.date"
             :city="item.city"
             :cost="item.cost"
+            :item="item"
+            @remove="removeFromList(item.id)"
             class="main-screen__card"
           />
         </div>

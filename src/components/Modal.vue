@@ -18,9 +18,9 @@ export default {
     return {
       showModal: true,
       inputs: [
-        {title: 'Your Name', placeholder: 'Paul' },
-        {title: 'E-mail', placeholder: 'hello@voynov.co' },
-        {title: 'Home City', placeholder: 'San Francisco' },
+        {title: 'Your Name', placeholder: 'Paul', value: ''},
+        {title: 'E-mail', placeholder: 'hello@voynov.co', value: ''},
+        {title: 'Home City', placeholder: 'San Francisco', value: ''},
       ],
     };
   },
@@ -31,7 +31,7 @@ export default {
   <div v-if="showModal" class="modal">
     <div class="modal__window">
       <h2 class="modal__title">{{ title }}</h2>
-      <div @click="showModal = !showModal" class="modal__close"></div>
+      <div @click="$emit('close')" class="modal__close"></div>
       <p class="modal__subtitle">{{ subtitle }}</p>
       <div class="modal__inputs">
         <Input
@@ -39,6 +39,7 @@ export default {
           :key="item.title"
           :title="item.title"
           :placeholder="item.placeholder"
+          v-model="item.value"
           class="modal__input" />
       </div>
       <Button text="Submit" class="modal__button" />
