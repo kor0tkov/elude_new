@@ -17,7 +17,7 @@ export default {
 
 <template>
   <div id="join" class="join">
-    <Background join="true" class="join__background" />
+    <Background v-bind:join="true" class="join__background" />
     <Container class="join__container">
       <img src="../../src/assets/img/background/phone-2x.png" class="join__img" />
       <div class="join__content">

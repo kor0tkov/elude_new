@@ -23,6 +23,7 @@ export default {
         { id: 3, date: '4 Oct - 12 Oct', city: 'Rome', cost: '$639' },
         { id: 4, date: '21 Sep - 25 Sep', city: 'Rio de Janeiro', cost: '$820' },
       ],
+      scrollEventFunc: null
     };
   },
   methods: {
@@ -38,7 +39,31 @@ export default {
     removeFromList(id) {
       this.cards = this.cards.filter(item => item.id !== id);
     },
+    handleScroll: function(vt, el) {
+      if (window.scrollY >= 1) {
+        el.classList.add("active");
+      }
+      if (window.scrollY === 0) {
+        el.classList.remove("active");
+      }
+      return window.scrollY > 100;
+    }
   },
+  /*mounted() {
+    const html = document.getElementsByTagName('html')[0];
+    const container = document.getElementsByClassName('main-screen__container')[0];
+    //document.body.style.overflow = "hidden";
+    this.scrollEventFunc = () => {
+      if (html.scrollTop > 0) {
+        document.removeEventListener('scroll', this.scrollEventFunc);
+        container.classList.add("main-screen__container_active");
+        this.onScrollToEvents('#join');
+      } else {
+        container.classList.remove("main-screen__container_active")
+      }
+    };
+    document.addEventListener('scroll', this.scrollEventFunc);
+  }*/
 };
 </script>
 
@@ -48,7 +73,7 @@ export default {
       v-bind:main-screen="true"
       class="main-screen__background"
     />
-    <Container class="main-screen__container">
+    <Container v-scroll="handleScroll" class="main-screen__container">
       <Header class="main-screen__header"/>
       <div class="main-screen__title">From LA</div>
       <div class="main-screen__section">
@@ -81,6 +106,7 @@ export default {
   height: 100vh;
   width: 100%;
   &__container {
+    transition: 0.5s;
     position: relative;
     height: 100%;
     display: flex;
@@ -93,10 +119,29 @@ export default {
     @media only screen and (max-width: 768px) {
       padding-bottom: 50px;
     }
+    &_active {
+      //animation-name: container1;
+      //animation-duration: 4s;
+      //animation-iteration-count: infinite;
+      //animation-direction: alternate;
+      //animation-timing-function: linear;
+      @keyframes container1 {
+        0% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+    }
   }
   &__header {
     position: relative;
     z-index: 5;
+    .active & {
+      opacity: 0;
+      transition: .5s;
+    }
   }
   &__title {
     position: absolute;
@@ -116,12 +161,12 @@ export default {
       line-height: 114px;
       top: 8vh;
     }
-    animation-name: title;
+    animation-name: title-show;
     animation-duration: 3s;
     animation-iteration-count: 1;
     animation-direction: alternate;
     animation-timing-function: ease;
-    @keyframes title {
+    @keyframes title-show {
       from {
         opacity: 0;
         left: -100%;
@@ -130,6 +175,11 @@ export default {
         opacity: 0.5;
         left: 200px;
       }
+    }
+    .active & {
+      opacity: 0;
+      transform: translateX(-100%);
+      transition: .7s;
     }
   }
   &__section {
@@ -141,6 +191,10 @@ export default {
       align-items: flex-end;
     }
     @media only screen and (max-width: 768px) {
+    }
+    .active & {
+      opacity: 0;
+      transition: .7s;
     }
   }
   &__cards {
@@ -159,6 +213,27 @@ export default {
     }
     @media only screen and (max-width: 768px) {
       margin-right: 10px;
+    }
+    animation-name: card-show;
+    //animation-duration: 0.5s;
+    //animation-direction: alternate;
+    animation-timing-function: linear;
+    @keyframes card-show {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    &:nth-child(2) {
+      animation-delay: 0.5s;
+    }
+    &:nth-child(3) {
+      animation-delay: 1s;
+    }
+    &:nth-child(4) {
+      animation-delay: 1.5s;
     }
   }
   &__social-icons {

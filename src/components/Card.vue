@@ -2,10 +2,6 @@
 export default {
   name: "Card",
   props: {
-    id: {
-      type: Number,
-      required: true,
-    },
     date: {
       type: String,
       default: '',
