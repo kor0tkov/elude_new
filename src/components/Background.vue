@@ -1,26 +1,16 @@
 <script>
 export default {
   name: "Background",
-  props: {
-		mainScreen: {
-			type: Boolean,
-			default: false,
-		},
-		join: {
-			type: Boolean,
-			default: false,
-		},
-  },
 };
 </script>
 
 <template>
 	<div class="background">
-		<div v-if="mainScreen" class="background__plane background__plane_show background__plane_move"></div>
-		<div v-if="mainScreen" class="background__clouds background__clouds_0"></div>
-		<div v-if="join" class="background__clouds background__clouds_1"></div>
-		<div v-if="mainScreen" class="background__clouds background__clouds_2"></div>
-		<div v-if="mainScreen" class="background__clouds background__clouds_3"></div>
+		<div id="plane" class="background__plane background__plane_show background__plane_move"></div>
+		<div class="background__clouds background__clouds_0"></div>
+		<div id="clouds_1" class="background__clouds background__clouds_1"></div>
+		<div id="clouds_0" class="background__clouds background__clouds_2"></div>
+		<div class="background__clouds background__clouds_3"></div>
 	</div>
 </template>
 
@@ -32,6 +22,20 @@ export default {
   bottom: 0;
   left: 0;
 	overflow: hidden;
+	.plane-hide {
+		animation-name: plane-hide;
+		animation-duration: 1.5s;
+		animation-delay: 0s;
+		opacity: 0;
+		@keyframes plane-hide {
+			from {
+				opacity: 1;
+			}
+			to {
+				transform: translateX(100%) translateY(-100%);
+			}
+		}
+	}
   &__plane {
     position: absolute;
     z-index: 3;
@@ -56,8 +60,8 @@ export default {
 		}
 		&_show {
 			animation-name: plane-show, plane-move;
-			animation-duration: 3s, 10s;
-			animation-delay: 0s, 4s;
+			animation-duration: 1.5s, 10s;
+			animation-delay: 0s, 2s;
 			animation-iteration-count: 1, infinite;
 			@keyframes plane-show {
 				from {
@@ -81,6 +85,33 @@ export default {
 		}
   }
 
+	.clouds-hide {
+		animation-name: clouds-hide;
+		animation-duration: 1.5s;
+		animation-iteration-count: 1;
+		opacity: 0;
+		@keyframes clouds-hide {
+			from {
+				opacity: 1;
+			}
+			to {
+				transform: translateY(-100%);
+			}
+		}
+	}
+	.clouds-transform {
+		background-size: 100% 100%;
+		animation-name: clouds-transform;
+		animation-duration: 1s;
+		@keyframes clouds-transform {
+			from {
+				background-size: 100% 60%;
+			}
+			to {
+				background-size: 100% 100%;
+			}
+		}
+	}
   &__clouds {
     position: absolute;
     background-size: cover;
@@ -98,8 +129,8 @@ export default {
       z-index: 1;
       height: 100%;
       width: 100%;
-			//background-size: 100% 33%;
-			//background-position: top;
+			background-size: 100% 60%;
+			background-position: bottom;
       background-image: url('../../src/assets/img/background/clouds-1.jpg');
     }
 

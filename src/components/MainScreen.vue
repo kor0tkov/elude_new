@@ -27,7 +27,7 @@ export default {
     };
   },
   methods: {
-    onScrollToEvents(selector) {
+    /*onScrollToEvents(selector) {
       const element = document.querySelector(selector);
       const offsetPosition = element.offsetTop;
       window.scrollTo({
@@ -38,13 +38,25 @@ export default {
     },
     removeFromList(id) {
       this.cards = this.cards.filter(item => item.id !== id);
-    },
+    },*/
     handleScroll: function(vt, el) {
+      const plane = document.getElementById('plane');
+      const join = document.getElementById('join-container');
+      const clouds_0 = document.getElementById('clouds_0');
+      const clouds_1 = document.getElementById('clouds_1');
       if (window.scrollY >= 1) {
-        el.classList.add("active");
+        el.classList.add("if_scroll");
+        plane.classList.add("plane-hide");
+        join.classList.add("join-show");
+        clouds_0.classList.add("clouds-hide");
+        clouds_1.classList.add("clouds-transform");
       }
       if (window.scrollY === 0) {
-        el.classList.remove("active");
+        el.classList.remove("if_scroll");
+        plane.classList.remove("plane-hide");
+        join.classList.remove("join-show");
+        clouds_0.classList.remove("clouds-hide");
+        clouds_1.classList.remove("clouds-transform");
       }
       return window.scrollY > 100;
     }
@@ -69,10 +81,7 @@ export default {
 
 <template>
   <div class="main-screen">
-    <Background
-      v-bind:main-screen="true"
-      class="main-screen__background"
-    />
+    <Background class="main-screen__background" />
     <Container v-scroll="handleScroll" class="main-screen__container">
       <Header class="main-screen__header"/>
       <div class="main-screen__title">From LA</div>
@@ -85,7 +94,6 @@ export default {
             :city="item.city"
             :cost="item.cost"
             :item="item"
-            @remove="removeFromList(item.id)"
             class="main-screen__card"
           />
         </div>
@@ -93,19 +101,20 @@ export default {
         <Button
           text="What else ya got?"
           class="main-screen__button"
-          @click.native.prevent="onScrollToEvents('#join')"
+          @click.native.prevent="handleScroll"
         />
       </div>
-      <div class="main-screen__arrow" @click.prevent="onScrollToEvents('#join')"></div>
+      <div class="main-screen__arrow" @click.prevent="handleScroll"></div>
     </Container>
   </div>
 </template>
 
 <style lang="scss">
 .main-screen {
-  height: 100vh;
+  height: calc(100vh + 1px);
   width: 100%;
   &__container {
+    top: 0;
     transition: 0.5s;
     position: relative;
     height: 100%;
@@ -119,26 +128,11 @@ export default {
     @media only screen and (max-width: 768px) {
       padding-bottom: 50px;
     }
-    &_active {
-      //animation-name: container1;
-      //animation-duration: 4s;
-      //animation-iteration-count: infinite;
-      //animation-direction: alternate;
-      //animation-timing-function: linear;
-      @keyframes container1 {
-        0% {
-          opacity: 1;
-        }
-        100% {
-          opacity: 0;
-        }
-      }
-    }
   }
   &__header {
     position: relative;
     z-index: 5;
-    .active & {
+    .if_scroll & {
       opacity: 0;
       transition: .5s;
     }
@@ -162,7 +156,7 @@ export default {
       top: 8vh;
     }
     animation-name: title-show;
-    animation-duration: 3s;
+    animation-duration: 1.5s;
     animation-iteration-count: 1;
     animation-direction: alternate;
     animation-timing-function: ease;
@@ -176,7 +170,7 @@ export default {
         left: 200px;
       }
     }
-    .active & {
+    .if_scroll & {
       opacity: 0;
       transform: translateX(-100%);
       transition: .7s;
@@ -192,7 +186,7 @@ export default {
     }
     @media only screen and (max-width: 768px) {
     }
-    .active & {
+    .if_scroll & {
       opacity: 0;
       transition: .7s;
     }
@@ -214,13 +208,14 @@ export default {
     @media only screen and (max-width: 768px) {
       margin-right: 10px;
     }
-    animation-name: card-show;
-    //animation-duration: 0.5s;
+    //animation-name: card-show;
+    animation-duration: 0.5s;
     //animation-direction: alternate;
     animation-timing-function: linear;
     @keyframes card-show {
       from {
         opacity: 0;
+        transform: translateY(-100%);
       }
       to {
         opacity: 1;
