@@ -1,5 +1,4 @@
 import IndexView from "../views/index"
-import CityView from '../views/city'
 
 export default [
     {
@@ -10,6 +9,6 @@ export default [
     {
         name: 'city',
         path: '/:city',
-        component: CityView
+        component: IndexView
     }
 ]

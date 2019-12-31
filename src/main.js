@@ -10,7 +10,6 @@ Vue.config.productionTip = false;
 new Vue({
     render: h => h(App),
     router: new VueRouter({
-        mode: 'history',
         routes
     })
 }).$mount('#app');

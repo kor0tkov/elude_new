@@ -7,8 +7,8 @@
 		components: {Join, MainScreen},
 		props: {
 			results: Array
-		}
-	}
+		},
+  }
 </script>
 
 <template>
