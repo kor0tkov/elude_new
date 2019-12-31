@@ -13,9 +13,15 @@ export default {
     cost: {
       type: String,
       default: '',
-    }
-  }
-}
+    },
+  },
+  methods: {
+    removeItem: function() {
+      // генерируем событие 'remove' и передаём id элемента
+      this.$emit('remove', this.id);
+    },
+  },
+};
 </script>
 
 <template>
@@ -26,7 +32,7 @@ export default {
     </div>
     <div class="card__section">
       <span class="card__cost">{{ cost }}</span>
-      <div class="card__button" />
+      <div @click="removeItem" class="card__button"></div>
     </div>
   </div>
 </template>

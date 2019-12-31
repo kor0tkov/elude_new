@@ -1,11 +1,10 @@
 <script>
-import Background from "@/components/Background";
 import Container from "@/components/base/Container";
 import Button from "@/components/base/Button";
 import Modal from "@/components/Modal";
 export default {
   name: "Join",
-  components: {Button, Container, Background, Modal},
+  components: {Button, Container, Modal},
   data() {
     return {
       showModal: false,
@@ -17,17 +16,18 @@ export default {
 
 <template>
   <div id="join" class="join">
-    <Background join="true" class="join__background" />
-    <Container class="join__container">
+    <!--<Background v-bind:join="true" class="join__background" />-->
+    <Container id="join-container" class="join__container">
       <img src="../../src/assets/img/background/phone-2x.png" class="join__img" />
       <div class="join__content">
         <h2 class="join__title">Join Us</h2>
         <p class="join__text">{{ text }}</p>
-        <Button @click.native="showModal = !showModal" text="I'm In, Let's Go!" class="join__button" />
+        <Button @click="showModal = true" text="I'm In, Let's Go!" class="join__button" />
       </div>
     </Container>
     <Modal
       v-if="showModal"
+      @close="showModal = false"
       title="Join Us"
       subtitle="Keep up-to-date and be amongst the first to get access our platform."
       class="join__modal"
@@ -40,14 +40,29 @@ export default {
   height: 100vh;
   width: 100%;
   overflow: hidden;
-  &__container {
+  .join-show {
     height: 100%;
+    animation-name: join-show;
+    animation-duration: 3s;
+    //animation-delay: 2s;
+    opacity: 1;
+    @keyframes join-show {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  }
+  &__container {
     position: relative;
     z-index: 4;
     display: flex;
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
+    opacity: 0;
     @media only screen and (min-width: 769px) {
       padding-top: 90px;
       padding-bottom: 110px;

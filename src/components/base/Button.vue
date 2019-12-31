@@ -11,7 +11,7 @@ export default {
 </script>
 
 <template>
-  <button class="button">{{ text }}</button>
+  <button class="button" v-on:click="$emit('click', $event.target.value)">{{ text }}</button>
 </template>
 
 <style lang="scss">

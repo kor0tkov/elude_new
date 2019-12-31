@@ -10,14 +10,20 @@
         type: String,
         default: '',
       },
+      value: String
     },
+    methods: {
+      updateInput(e) {
+        this.$emit('input', e.target.value)
+      }
+    }
   };
 </script>
 
 <template>
   <div class="input">
     <span class="input__title">{{ title }}</span>
-    <input :placeholder="placeholder" class="input__item" />
+    <input :placeholder="placeholder" :value="value" v-on:input="updateInput($event)" class="input__item" />
   </div>
 </template>
 
