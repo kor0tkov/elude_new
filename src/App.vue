@@ -37,6 +37,7 @@
         });
       },
       filterByCity(name) {
+        if (!name) return;
         const low = (word) => word.toLowerCase();
         return this.results.filter(({LP_city}) => low(LP_city) === low(name))
       }
