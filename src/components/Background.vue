@@ -71,15 +71,30 @@ export default {
 					background-position: center;
 				}
 			}
-			@keyframes plane-move {
-				from {
-					background-position: center;
+			@media only screen and (min-width: 769px) {
+				@keyframes plane-move {
+					from {
+						background-position: center;
+					}
+					50% {
+						transform: translateY(-4%) translateX(-48%);
+					}
+					to {
+						background-position: center;
+					}
 				}
-				50% {
-					transform: translateY(-4%) translateX(-48%);
-				}
-				to {
-					background-position: center;
+			}
+			@media only screen and (max-width: 768px) {
+				@keyframes plane-move {
+					from {
+						background-position: center;
+					}
+					50% {
+						transform: translateY(4%) translateX(5%);
+					}
+					to {
+						background-position: center;
+					}
 				}
 			}
 		}

@@ -40,8 +40,6 @@ export default {
       this.cards = this.cards.filter(item => item.id !== id);
     },*/
     handleScroll: function(vt, el) {
-      // eslint-disable-next-line no-console
-      console.log(el.scrollTop, window.scrollY);
       const plane = document.getElementById('plane');
       const join = document.getElementById('join-container');
       const clouds_0 = document.getElementById('clouds_0');
