@@ -37,14 +37,16 @@ export default {
       else return [];
     },
     quickRoutes() {
-      const arr = this.routes.slice(0, 4);
-      arr.map(el => {
-        el.date = `${moment(el.outbound_departure_dt).format("D MMM")} - ${moment(el.inbound_departure_dt).format('D MMM')}`;
-        el.price = Number(el.local_price).toFixed(0);
-        el.link = el['Landing_Page_Link\r'];
-        return el;
+      const parseDate = (date) => moment(date).format("D MMM");
+      // const arr = this.routes.slice(0, 4);
+      return this.routes.slice(0, 4).map(el => {
+        return {
+          date: `${parseDate(el.outbound_departure_dt)} - ${parseDate(el.inbound_departure_dt)}`,
+          price: Number(el.local_price).toFixed(0),
+          link: el.Landing_Page_Link,
+          city: el.destination_city,
+        }
       });
-      return arr
     }
   },
   methods: {
@@ -116,7 +118,7 @@ export default {
             v-for="(route, idx) in quickRoutes"
             :key="idx"
             :date="route.date"
-            :city="route.destination_city"
+            :city="route.city"
             :cost="route.price"
             :link="route.link"
             class="main-screen__card"

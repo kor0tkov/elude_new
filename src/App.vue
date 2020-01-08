@@ -11,7 +11,7 @@
         },
         methods: {
             async CSVtoJSON(arr) {
-                const parsed = arr.split('\n').map(line => line.split(','));
+                const parsed = arr.split('\r\n').map(line => line.split(','));
                 let nav = parsed[0];
                 nav = nav.map(el => el.replace(/ /g, "_"));
 
