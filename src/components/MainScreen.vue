@@ -40,6 +40,8 @@ export default {
       const arr = this.routes.slice(0, 4);
       arr.map(el => {
         el.date = `${moment(el.outbound_departure_dt).format("D MMM")} - ${moment(el.inbound_departure_dt).format('D MMM')}`;
+        el.price = Number(el.local_price).toFixed(0);
+        el.link = el['Landing_Page_Link\r'];
         return el;
       });
       return arr
@@ -115,8 +117,8 @@ export default {
             :key="idx"
             :date="route.date"
             :city="route.destination_city"
-            :cost="route.local_price"
-            :link="route['Landing_Page_Link\r']"
+            :cost="route.price"
+            :link="route.link"
             class="main-screen__card"
           />
         </div>
