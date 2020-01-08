@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Card from "@/components/Card";
 import SocialIcons from "@/components/SocialIcons";
 import Button from "@/components/base/Button";
+import moment from "moment";
 export default {
   name: "mainScreen",
   components: {
@@ -36,7 +37,12 @@ export default {
       else return [];
     },
     quickRoutes() {
-      return this.routes.slice(0, 4)
+      const arr = this.routes.slice(0, 4);
+      arr.map(el => {
+        el.date = `${moment(el.outbound_departure_dt).format("D MMM")} - ${moment(el.inbound_departure_dt).format('D MMM')}`;
+        return el;
+      });
+      return arr
     }
   },
   methods: {
@@ -107,7 +113,7 @@ export default {
           <Card
             v-for="(route, idx) in quickRoutes"
             :key="idx"
-            :date="route.outbound_departure_dt"
+            :date="route.date"
             :city="route.destination_city"
             :cost="route.local_price"
             :link="route['Landing_Page_Link\r']"

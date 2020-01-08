@@ -14,8 +14,6 @@
                 const parsed = arr.split('\n').map(line => line.split(','));
                 let nav = parsed[0];
                 nav = nav.map(el => el.replace(/ /g, "_"));
-                // eslint-disable-next-line no-console
-                console.log(nav[nav.length - 1]);
 
                 for (let i = 1; i < parsed.length; i++) {
                     const line = parsed[i];

@@ -64,14 +64,16 @@ export default {
     opacity: 0.75;
     margin-bottom: 10px;
     max-height: 35px;
+    color: #706163;
     overflow: hidden;
   }
   &__city {
     display: block;
-    font-size: 32px;
+    font-size: 28px;
     font-weight: 700;
     color: #706163;
     max-height: 112px;
+    word-break: break-all;
     overflow: hidden;
   }
   &__section {
