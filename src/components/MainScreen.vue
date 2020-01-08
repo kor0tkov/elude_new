@@ -15,6 +15,9 @@ export default {
     Background,
     Container
   },
+  props: {
+    routes: Array
+  },
   data() {
     return {
       cards: [
@@ -25,6 +28,16 @@ export default {
       ],
       scrollEventFunc: null
     };
+  },
+  computed: {
+    cityName() {
+      if (this.routes.length && this.routes.length > 0)
+        return this.routes[0].LP_city;
+      else return [];
+    },
+    quickRoutes() {
+      return this.routes.slice(0, 4)
+    }
   },
   methods: {
     /*onScrollToEvents(selector) {
@@ -76,6 +89,10 @@ export default {
     };
     document.addEventListener('scroll', this.scrollEventFunc);
   }*/
+  mounted() {
+    // eslint-disable-next-line no-console
+    console.log(this.routes);
+  }
 };
 </script>
 
@@ -84,15 +101,16 @@ export default {
     <Background class="main-screen__background" />
     <Container v-scroll="handleScroll" class="main-screen__container">
       <Header class="main-screen__header"/>
-      <div class="main-screen__title">From LA</div>
+      <div class="main-screen__title">From {{cityName}}</div>
       <div class="main-screen__section">
-        <div class="main-screen__cards">
+        <div class="main-screen__cards" v-if="quickRoutes.length > 0">
           <Card
-            v-for="item in cards"
-            :key="item.id"
-            :date="item.date"
-            :city="item.city"
-            :cost="item.cost"
+            v-for="(route, idx) in quickRoutes"
+            :key="idx"
+            :date="route.outbound_departure_dt"
+            :city="route.destination_city"
+            :cost="route.local_price"
+            :link="route['Landing_Page_Link\r']"
             class="main-screen__card"
           />
         </div>

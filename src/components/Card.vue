@@ -14,12 +14,10 @@ export default {
       type: String,
       default: '',
     },
-  },
-  methods: {
-    removeItem: function() {
-      // генерируем событие 'remove' и передаём id элемента
-      this.$emit('remove', this.id);
-    },
+    link: {
+      type: String,
+      default: ''
+    }
   },
 };
 </script>
@@ -31,8 +29,8 @@ export default {
       <span class="card__city">{{ city }}</span>
     </div>
     <div class="card__section">
-      <span class="card__cost">{{ cost }}</span>
-      <div @click="removeItem" class="card__button"></div>
+      <span class="card__cost">${{ cost }}</span>
+      <a :href="link" class="card__button"/>
     </div>
   </div>
 </template>

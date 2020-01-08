@@ -13,7 +13,7 @@
 
 <template>
 	<div class="index">
-		<MainScreen class="index__main-screen" />
+		<MainScreen :routes="results" class="index__main-screen" />
 		<Join class="index__join" />
 	</div>
 </template>

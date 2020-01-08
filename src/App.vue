@@ -40,7 +40,8 @@
                 });
             },
             filterByCity(name) {
-                if (!name) return;const low = (word) => word.toLowerCase();
+                if (!name) return;
+                const low = (word) => word.toLowerCase();
                 return this.results.filter(({LP_city}) => low(LP_city) === low(name))
             }
         },
@@ -52,8 +53,6 @@
                     const name = this.$route.params.city;
                     if (name) this.results = this.filterByCity(name);
                 });
-            // eslint-disable-next-line no-console
-            console.log(this.results);
         }
     }
 </script>
