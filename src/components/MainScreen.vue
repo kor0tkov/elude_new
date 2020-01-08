@@ -93,7 +93,6 @@ export default {
             :date="item.date"
             :city="item.city"
             :cost="item.cost"
-            :item="item"
             class="main-screen__card"
           />
         </div>
@@ -208,10 +207,8 @@ export default {
     @media only screen and (max-width: 768px) {
       margin-right: 10px;
     }
-    //animation-name: card-show;
     animation-duration: 0.5s;
-    //animation-direction: alternate;
-    animation-timing-function: linear;
+    animation-timing-function: ease-out;
     @keyframes card-show {
       from {
         opacity: 0;
@@ -221,14 +218,25 @@ export default {
         opacity: 1;
       }
     }
+    &:nth-child(1) {
+      animation-name: card-show;
+      animation-duration: 0.5s;
+      /*animation-delay: 0.05s;*/
+    }
     &:nth-child(2) {
-      animation-delay: 0.5s;
+      animation-name: card-show;
+      animation-duration: 1s;
+      /*animation-delay: 0.5s;*/
     }
     &:nth-child(3) {
-      animation-delay: 1s;
+      animation-name: card-show;
+      animation-duration: 1.5s;
+      /*animation-delay: 1s;*/
     }
     &:nth-child(4) {
-      animation-delay: 1.5s;
+      animation-name: card-show;
+      animation-duration: 2s;
+      /*animation-delay: 1.5s;*/
     }
   }
   &__social-icons {
