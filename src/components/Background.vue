@@ -100,6 +100,20 @@ export default {
 		}
   }
 
+  .clouds-show {
+    animation-name: clouds-show;
+    animation-duration: 1.5s;
+    animation-iteration-count: 1;
+    opacity: 1;
+    @keyframes clouds-show {
+      from {
+        transform: translateY(-100%);
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  }
 	.clouds-hide {
 		animation-name: clouds-hide;
 		animation-duration: 1.5s;
@@ -114,6 +128,19 @@ export default {
 			}
 		}
 	}
+  .clouds-transform-up {
+    background-size: 100% 60%;
+    animation-name: clouds-transform-up;
+    animation-duration: 1s;
+    @keyframes clouds-transform-up {
+      from {
+        background-size: 100% 100%;
+      }
+      to {
+        background-size: 100% 60%;
+      }
+    }
+  }
 	.clouds-transform {
 		background-size: 100% 100%;
 		animation-name: clouds-transform;
