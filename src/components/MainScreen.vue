@@ -64,22 +64,46 @@ export default {
     },*/
     handleScroll: function(vt, el) {
       const plane = document.getElementById('plane');
+      const header = document.getElementById('header');
+      const title = document.getElementById('title');
       const join = document.getElementById('join-container');
       const clouds_0 = document.getElementById('clouds_0');
       const clouds_1 = document.getElementById('clouds_1');
-      if (window.scrollY >= 1) {
-        el.classList.add("if_scroll");
-        plane.classList.add("plane-hide");
-        join.classList.add("join-show");
-        clouds_0.classList.add("clouds-hide");
-        clouds_1.classList.add("clouds-transform");
-      }
+      const arrow = document.getElementById('arrow');
+
       if (window.scrollY === 0) {
-        el.classList.remove("if_scroll");
+        el.classList.add("cards-show-up");
+        header.classList.add("header-show");
+        title.classList.add("title-show");
+        clouds_0.classList.add("clouds-hide");
+        clouds_1.classList.add("clouds-transform-up");
+        join.classList.add("join-hide");
+
+        el.classList.remove("cards-hide");
         plane.classList.remove("plane-hide");
-        join.classList.remove("join-show");
+        header.classList.remove("header-hide");
+        title.classList.remove("title-hide");
         clouds_0.classList.remove("clouds-hide");
         clouds_1.classList.remove("clouds-transform");
+        arrow.classList.remove("arrow-hide");
+        join.classList.remove("join-show");
+      }
+      if (window.scrollY >= 1) {
+        el.classList.add("cards-hide");
+        header.classList.add("header-hide");
+        title.classList.add("title-hide");
+        plane.classList.add("plane-hide");
+        clouds_0.classList.add("clouds-hide");
+        clouds_1.classList.add("clouds-transform");
+        arrow.classList.add("arrow-hide");
+        join.classList.add("join-show");
+
+        el.classList.remove("cards-show-up");
+        header.classList.remove("header-show");
+        title.classList.remove("title-show");
+        clouds_0.classList.remove("clouds-hide");
+        clouds_1.classList.remove("clouds-transform-up");
+        join.classList.remove("join-hide");
       }
       return window.scrollY > 100;
     }
@@ -110,8 +134,8 @@ export default {
   <div class="main-screen">
     <Background class="main-screen__background" />
     <Container v-scroll="handleScroll" class="main-screen__container">
-      <Header class="main-screen__header"/>
-      <div class="main-screen__title">From {{cityName}}</div>
+      <Header id="header" class="main-screen__header"/>
+      <div id="title" class="main-screen__title">From {{cityName}}</div>
       <div class="main-screen__section">
         <div class="main-screen__cards" v-if="quickRoutes.length > 0">
           <Card
@@ -131,7 +155,7 @@ export default {
           @click.native.prevent="handleScroll"
         />
       </div>
-      <div class="main-screen__arrow" @click.prevent="handleScroll"></div>
+      <div id="arrow" class="main-screen__arrow" @click.prevent=""></div>
     </Container>
   </div>
 </template>
@@ -156,16 +180,57 @@ export default {
       padding-bottom: 50px;
     }
   }
+  .header-show {
+    opacity: 1;
+    transition: .5s;
+  }
+  .header-hide {
+    opacity: 0;
+    transition: .5s;
+  }
   &__header {
     position: relative;
     z-index: 5;
-    .if_scroll & {
-      opacity: 0;
-      transition: .5s;
+  }
+  .title-show {
+    animation-name: title-showw;
+    animation-duration: 1.5s;
+    animation-iteration-count: 1;
+    animation-direction: alternate;
+    animation-timing-function: ease;
+    @media only screen and (min-width: 769px) {
+      @keyframes title-showw {
+        from {
+          opacity: 0;
+          left: -100%;
+        }
+        to {
+          opacity: 0.5;
+          left: 200px;
+        }
+      }
     }
+    @media only screen and (max-width: 768px) {
+      @keyframes title-show {
+        from {
+          opacity: 0;
+          left: -100%;
+        }
+        to {
+          opacity: 0.5;
+          left: 20px;
+        }
+      }
+    }
+  }
+  .title-hide {
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: .7s;
   }
   &__title {
     position: absolute;
+    max-width: 1000px;
     z-index: 2;
     font-weight: 800;
     opacity: 0.5;
@@ -187,20 +252,29 @@ export default {
     animation-iteration-count: 1;
     animation-direction: alternate;
     animation-timing-function: ease;
-    @keyframes title-show {
-      from {
-        opacity: 0;
-        left: -100%;
-      }
-      to {
-        opacity: 0.5;
-        left: 200px;
+    @media only screen and (min-width: 769px) {
+      @keyframes title-show {
+        from {
+          opacity: 0;
+          left: -100%;
+        }
+        to {
+          opacity: 0.5;
+          left: 200px;
+        }
       }
     }
-    .if_scroll & {
-      opacity: 0;
-      transform: translateX(-100%);
-      transition: .7s;
+    @media only screen and (max-width: 768px) {
+      @keyframes title-show {
+        from {
+          opacity: 0;
+          left: -100%;
+        }
+        to {
+          opacity: 0.5;
+          left: 20px;
+        }
+      }
     }
   }
   &__section {
@@ -213,9 +287,21 @@ export default {
     }
     @media only screen and (max-width: 768px) {
     }
-    .if_scroll & {
-      opacity: 0;
+    .cards-hide & {
       transition: .7s;
+      opacity: 0;
+      z-index: -1;
+      animation-name: cards-hide;
+      animation-duration: 0.5s;
+      animation-timing-function: ease-out;
+    }
+    .cards-show-up & {
+      transition: .7s;
+      opacity: 1;
+      z-index: 4;
+      animation-name: card-show;
+      animation-duration: 0.7s;
+      animation-timing-function: ease-out;
     }
   }
   &__cards {
@@ -223,6 +309,7 @@ export default {
     @media only screen and (min-width: 769px) {
     }
     @media only screen and (max-width: 768px) {
+      height: 220px;
       overflow: scroll;
       margin-right: -20px;
     }
@@ -249,22 +336,18 @@ export default {
     &:nth-child(1) {
       animation-name: card-show;
       animation-duration: 0.5s;
-      /*animation-delay: 0.05s;*/
     }
     &:nth-child(2) {
       animation-name: card-show;
       animation-duration: 1s;
-      /*animation-delay: 0.5s;*/
     }
     &:nth-child(3) {
       animation-name: card-show;
       animation-duration: 1.5s;
-      /*animation-delay: 1s;*/
     }
     &:nth-child(4) {
       animation-name: card-show;
       animation-duration: 2s;
-      /*animation-delay: 1.5s;*/
     }
   }
   &__social-icons {
@@ -284,6 +367,9 @@ export default {
       font-size: 16px;
       margin-top: 20px;
     }
+  }
+  .arrow-hide {
+    opacity: 0;
   }
   &__arrow {
     position: absolute;

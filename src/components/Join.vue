@@ -16,7 +16,6 @@ export default {
 
 <template>
   <div id="join" class="join">
-    <!--<Background v-bind:join="true" class="join__background" />-->
     <Container id="join-container" class="join__container">
       <img src="../../src/assets/img/background/phone-2x.png" class="join__img" />
       <div class="join__content">
@@ -45,6 +44,7 @@ export default {
     animation-name: join-show;
     animation-duration: 3s;
     //animation-delay: 2s;
+    animation-timing-function: ease-out;
     opacity: 1;
     @keyframes join-show {
       from {

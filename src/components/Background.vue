@@ -155,10 +155,14 @@ export default {
       width: 100%;
       background-image: url('../../src/assets/img/background/clouds-2.png');
 			animation-name: clouds-2;
-			animation-duration: 10s;
 			animation-iteration-count: infinite;
-			//animation-direction: alternate;
 			animation-timing-function: linear;
+      @media only screen and (min-width: 769px) {
+        animation-duration: 10s;
+      }
+      @media only screen and (max-width: 768px) {
+        animation-duration: 20s;
+      }
 			@keyframes clouds-2 {
 				from {
 					background-position: left;
@@ -177,11 +181,15 @@ export default {
       background-position: bottom;
       background-image: url('../../src/assets/img/background/clouds-3.png');
 			animation-name: clouds-3;
-			animation-duration: 20s;
 			animation-iteration-count: infinite;
-			//animation-direction: alternate;
 			animation-timing-function: linear;
 			position: fixed;
+      @media only screen and (min-width: 769px) {
+        animation-duration: 20s;
+      }
+      @media only screen and (max-width: 768px) {
+        animation-duration: 50s;
+      }
 			@keyframes clouds-3 {
 				from {
 					background-position: left;

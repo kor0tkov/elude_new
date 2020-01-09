@@ -64,15 +64,17 @@ export default {
   &__window {
     position: relative;
     z-index: 7;
-    width: 620px;
     box-sizing: border-box;
     background-color: #ffffff;
     @media only screen and (min-width: 769px) {
+      width: 620px;
       padding: 30px 50px 50px;
     }
     @media only screen and (max-width: 768px) {
       height: 100%;
+      width: 100%;
       padding: 30px;
+      overflow: scroll;
     }
   }
   &__close {
@@ -112,9 +114,11 @@ export default {
     margin-bottom: 30px;
   }
   &__inputs {
+    background-color: #ffffff;
     margin-bottom: 75px;
   }
   &__input {
+    background-color: #ffffff;
     margin-bottom: 20px;
   }
   &__button {

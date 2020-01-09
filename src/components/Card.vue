@@ -41,7 +41,6 @@ export default {
   flex-direction: column;
   justify-content: space-between;
   position: relative;
-  height: 220px;
   background-color: #ffffff;
   border-radius: 4px;
   box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.05);
@@ -51,9 +50,10 @@ export default {
   outline: none;
   @media only screen and (min-width: 769px) {
     width: 180px;
+    height: 220px;
   }
   @media only screen and (max-width: 768px) {
-    width: 170px;
+    width: 55%;
     flex: 0 0 auto;
   }
   &__date {
