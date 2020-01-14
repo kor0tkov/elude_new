@@ -16,8 +16,8 @@ export default {
 
 <template>
   <div class="social-icons">
-    <a href="#" class="social-icons__item social-icons__item_instagram" />
-    <a href="#" class="social-icons__item social-icons__item_facebook" />
+    <a href="http://instagram.com/elude" target="_blank" class="social-icons__item social-icons__item_instagram" />
+    <a href="https://www.facebook.com/EIudeToday/" target="_blank" class="social-icons__item social-icons__item_facebook" />
   </div>
 </template>
 

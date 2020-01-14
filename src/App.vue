@@ -20,7 +20,8 @@
                     if (line.length === 1) return;
                     let obj = {};
                     line.forEach((col, idx) => {
-                        obj[nav[idx]] = col;
+                        const navKey = nav[idx];
+                        obj[navKey] = col;
                     });
                     this.results.push(obj);
                 }

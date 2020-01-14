@@ -63,6 +63,7 @@ export default {
       this.cards = this.cards.filter(item => item.id !== id);
     },*/
     handleScroll: function(vt, el) {
+      const app = document.getElementById('app');
       const plane = document.getElementById('plane');
       const header = document.getElementById('header');
       const title = document.getElementById('title');
@@ -72,6 +73,7 @@ export default {
       const arrow = document.getElementById('arrow');
 
       if (window.scrollY === 0) {
+        app.classList.remove('second-window');
         el.classList.add("cards-show-up");
         header.classList.add("header-show");
         title.classList.add("title-show");
@@ -89,6 +91,7 @@ export default {
         join.classList.remove("join-show");
       }
       if (window.scrollY >= 1) {
+        app.classList.add('second-window');
         el.classList.add("cards-hide");
         header.classList.add("header-hide");
         title.classList.add("title-hide");
@@ -137,16 +140,18 @@ export default {
       <Header id="header" class="main-screen__header"/>
       <div id="title" class="main-screen__title">From {{cityName}}</div>
       <div class="main-screen__section">
-        <div class="main-screen__cards" v-if="quickRoutes.length > 0">
-          <Card
-            v-for="(route, idx) in quickRoutes"
-            :key="idx"
-            :date="route.date"
-            :city="route.city"
-            :cost="route.price"
-            :link="route.link"
-            class="main-screen__card"
-          />
+        <div class="main-screen__cards-inner">
+          <div class="main-screen__cards" v-if="quickRoutes.length > 0">
+            <Card
+              v-for="(route, idx) in quickRoutes"
+              :key="idx"
+              :date="route.date"
+              :city="route.city"
+              :cost="route.price"
+              :link="route.link"
+              class="main-screen__card"
+            />
+          </div>
         </div>
         <SocialIcons class="main-screen__social-icons"/>
         <Button
@@ -277,6 +282,17 @@ export default {
       }
     }
   }
+
+  @keyframes card-show {
+    from {
+      opacity: 0;
+      transform: translateY(-100%);
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
   &__section {
     position: relative;
     z-index: 5;
@@ -284,6 +300,7 @@ export default {
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
+      z-index: 11;
     }
     @media only screen and (max-width: 768px) {
     }
@@ -296,22 +313,40 @@ export default {
       animation-timing-function: ease-out;
     }
     .cards-show-up & {
-      transition: .7s;
+      z-index: 11;
+      transition: 1s;
       opacity: 1;
-      z-index: 4;
-      animation-name: card-show;
-      animation-duration: 0.7s;
-      animation-timing-function: ease-out;
+      /*animation-name: card-show;*/
+      /*animation-duration: 0.7s;*/
+      /*animation-timing-function: ease-out;*/
     }
   }
   &__cards {
     display: flex;
-    @media only screen and (min-width: 769px) {
+    @media only screen and (min-width: 768px) {
+      height: 240px;
     }
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 1200px) {
       height: 220px;
-      overflow: scroll;
-      margin-right: -20px;
+      padding: 0 40px 50px 20px;
+      overflow-x: scroll;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    &-inner {
+      overflow: hidden;
+      width: 100%;
+      @media only screen and (max-width: 768px) {
+        overflow: hidden;
+        height: 220px;
+        width: calc(100% + 40px);
+        margin: 0 -20px;
+      }
+
+      @media only screen and (min-width: 768px) {
+        height: 240px;
+      }
     }
   }
   &__card {
@@ -324,15 +359,6 @@ export default {
     }
     animation-duration: 0.5s;
     animation-timing-function: ease-out;
-    @keyframes card-show {
-      from {
-        opacity: 0;
-        transform: translateY(-100%);
-      }
-      to {
-        opacity: 1;
-      }
-    }
     &:nth-child(1) {
       animation-name: card-show;
       animation-duration: 0.5s;
@@ -348,6 +374,10 @@ export default {
     &:nth-child(4) {
       animation-name: card-show;
       animation-duration: 2s;
+    }
+
+    .cards-show-up & {
+      animation-name: card-show;
     }
   }
   &__social-icons {

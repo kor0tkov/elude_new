@@ -24,9 +24,15 @@
 	font-family: 'Montserrat', sans-serif;
 	&__main-screen {
 		position: absolute;
+		z-index: 1;
 	}
 	&__join {
 		position: absolute;
+		z-index: 0;
+
+		.second-window & {
+			z-index: 2;
+		}
 	}
 }
 </style>
