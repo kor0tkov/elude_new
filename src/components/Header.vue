@@ -24,7 +24,7 @@ export default {
     <Button
       text="What else ya got?"
       class="header__button"
-      @click.native.prevent="onScrollToEvents('#join')"
+      @click="$emit('shuffle')"
     />
     <SocialIcons class="header__social-icons" />
   </div>
