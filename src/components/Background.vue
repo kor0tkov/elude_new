@@ -41,6 +41,7 @@
 		&__plane {
 			position: absolute;
 			z-index: 3;
+			pointer-events: none;
 			background-size: contain;
 			background-position: center;
 			background-repeat: no-repeat;

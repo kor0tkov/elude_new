@@ -38,7 +38,7 @@
                 else return null;
             },
             quickRoutes() {
-                const parseDate = (date) => moment(date).format("D MMM");
+                const parseDate = (date) => moment(new Date(date)).format("D MMM");
                 if (this.routes && this.routes.length > 0) {
                     const randomArr = this.arrayRandElements(this.routes, 4);
                     return randomArr.map(el => {
@@ -55,9 +55,17 @@
         methods: {
             arrayRandElements(arr, count) {
                 const countArr = Array(count).fill(null).map((u, i) => i);
+                let usedIdx = [];
                 return countArr.map(() => {
-                    const randomIdx = Math.floor(Math.random() * (arr.length - 1));
-                    return arr[randomIdx]
+                    const randomIdx = () => {
+                        let rand = Math.floor(Math.random() * (arr.length - 1));
+                        if (usedIdx.includes(rand)) {
+                            return randomIdx();
+                        }
+                        usedIdx.push(rand);
+                        return rand
+                    };
+                    return arr[randomIdx()]
                 });
             },
             shuffleArray(arr) {
@@ -264,7 +272,6 @@
 			letter-spacing: 1px;
 			@media only screen and (min-width: 769px) {
 				font-size: 11.5vw;
-				user-select: none;
 				line-height: 166px;
 				top: 14vh;
 			}
@@ -315,6 +322,7 @@
 		}
 
 		&__section {
+			pointer-events: none;
 			position: relative;
 			z-index: 5;
 			@media only screen and (min-width: 769px) {
@@ -352,9 +360,9 @@
 			}
 			@media only screen and (max-width: 1200px) {
 				height: 220px;
-				padding: 0 40px 50px 20px;
+				padding: 100px 40px 50px 20px;
 				overflow-x: scroll;
-				overflow-y: hidden;
+				/*overflow-y: hidden;*/
 				-webkit-overflow-scrolling: touch;
 			}
 
@@ -363,7 +371,7 @@
 				width: 100%;
 				@media only screen and (max-width: 768px) {
 					overflow: hidden;
-					height: 220px;
+					height: 320px;
 					width: calc(100% + 40px);
 					margin: 0 -20px;
 				}
@@ -375,6 +383,7 @@
 		}
 
 		&__card {
+			pointer-events: all;
 			@media only screen and (min-width: 769px) {
 				margin-top: 20px;
 				margin-right: 20px;
