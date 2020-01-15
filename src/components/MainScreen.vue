@@ -375,7 +375,6 @@
 					width: calc(100% + 40px);
 					margin: 0 -20px;
 				}
-
 				@media only screen and (min-width: 768px) {
 					height: 240px;
 				}
@@ -420,6 +419,9 @@
 		}
 
 		&__social-icons {
+      @media only screen and (min-width: 769px) {
+        display: flex;
+      }
 			@media only screen and (max-width: 768px) {
 				display: none;
 			}
