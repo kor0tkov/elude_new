@@ -61,6 +61,8 @@
 				right: 0;
 				transform: translateX(10px);
 			}
+			@media only screen and (max-width: 768px) {
+			}
 
 			&_show {
 				animation-name: plane-show, plane-move;
@@ -185,16 +187,23 @@
 			}
 
 			&_2 {
-				z-index: 2;
 				height: 100vh;
-				width: 200vw;
+				z-index: 2;
 				background-image: url('../../src/assets/img/background/clouds-2.png');
-				background-size: 100vw 100vh;
 				background-repeat: repeat-x;
 				animation-name: clouds-2;
 				animation-iteration-count: infinite;
 				animation-timing-function: linear;
-				animation-duration: 20s;
+				@media only screen and (min-width: 769px) {
+					width: 200vw;
+					background-size: 100vw 100vh;
+					animation-duration: 20s;
+				}
+				@media only screen and (max-width: 768px) {
+					width: 400vw;
+					background-size: 200vw 100vh;
+					animation-duration: 10s;
+				}
 				@keyframes clouds-2 {
 					from {
 						background-position: right;
