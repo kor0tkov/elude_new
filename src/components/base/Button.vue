@@ -25,6 +25,10 @@
 		cursor: pointer;
 		outline: none;
 		transition: 0.15s;
+		
+		&:disabled {
+			cursor: not-allowed;
+		}
 
 		&:hover {
 			background-color: #c34b4e;

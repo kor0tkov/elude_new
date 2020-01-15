@@ -50,22 +50,16 @@
                     mail: this.inputs[1].value,
                     city: this.inputs[2].value
                 };
-
-                await sendMail('php/mail.php', user)
-                    .then((response) => {
-                        // eslint-disable-next-line no-console
-                        console.log('response:', response);
-                        this.isSend = true;
-                        setTimeout(() => {
-                            this.isSend = false;
-                            this.inputs = this.inputs.map((el) => el.value = '');
-                        }, 2500)
-                    });
                 this.isSend = true;
                 setTimeout(() => {
                     this.isSend = false;
-                    this.inputs = this.inputs.map((el) => el.value = '');
-                }, 2500)
+                    this.showModal = false;
+                    this.inputs = this.inputs.map((el) => {
+                        el.value = '';
+                        return el;
+                    });
+                }, 2500);
+                await sendMail('php/mail.php', user)
             },
         }
     };
