@@ -97,28 +97,34 @@
                 const arrow = document.getElementById('arrow');
 
                 if (window.scrollY === 0) {
-                    app.classList.remove('second-window');
-                    el.classList.add("cards-show-up");
+                    app.classList.remove('second-screen');
+                    if (el)
+                        el.classList.add("cards-show-up");
                     header.classList.add("header-show");
-                    title.classList.add("title-show");
+                    if (title)
+                        title.classList.add("title-show");
                     clouds_0.classList.add("clouds-hide");
                     clouds_1.classList.add("clouds-transform-up");
                     join.classList.add("join-hide");
 
-                    el.classList.remove("cards-hide");
+                    if (el)
+                        el.classList.remove("cards-hide");
                     plane.classList.remove("plane-hide");
                     header.classList.remove("header-hide");
-                    title.classList.remove("title-hide");
+                    if (title)
+                        title.classList.remove("title-hide");
                     clouds_0.classList.remove("clouds-hide");
                     clouds_1.classList.remove("clouds-transform");
                     arrow.classList.remove("arrow-hide");
                     join.classList.remove("join-show");
                 }
                 if (window.scrollY >= 1) {
-                    app.classList.add('second-window');
-                    el.classList.add("cards-hide");
+                    app.classList.add('second-screen');
+                    if (el)
+                        el.classList.add("cards-hide");
                     header.classList.add("header-hide");
-                    title.classList.add("title-hide");
+                    if (title)
+                        title.classList.add("title-hide");
                     plane.classList.add("plane-hide");
                     clouds_0.classList.add("clouds-hide");
                     clouds_1.classList.add("clouds-transform");
@@ -126,8 +132,10 @@
                     join.classList.add("join-show");
 
                     el.classList.remove("cards-show-up");
-                    header.classList.remove("header-show");
-                    title.classList.remove("title-show");
+                    if (el)
+                        header.classList.remove("header-show");
+                    if (title)
+                        title.classList.remove("title-show");
                     clouds_0.classList.remove("clouds-hide");
                     clouds_1.classList.remove("clouds-transform-up");
                     join.classList.remove("join-hide");
@@ -270,6 +278,11 @@
 			opacity: 0.5;
 			color: #918b8c;
 			letter-spacing: 1px;
+			animation-name: title-show;
+			animation-duration: 1.5s;
+			animation-iteration-count: 1;
+			animation-direction: alternate;
+			animation-timing-function: ease;
 			@media only screen and (min-width: 769px) {
 				font-size: 11.5vw;
 				line-height: 166px;
@@ -280,11 +293,6 @@
 				line-height: 114px;
 				top: 8vh;
 			}
-			animation-name: title-show;
-			animation-duration: 1.5s;
-			animation-iteration-count: 1;
-			animation-direction: alternate;
-			animation-timing-function: ease;
 			@media only screen and (min-width: 769px) {
 				@keyframes title-show {
 					from {
@@ -309,6 +317,11 @@
 					}
 				}
 			}
+
+			.second-screen & {
+				animation: none;
+				opacity: 0;
+			}
 		}
 
 		@keyframes card-show {
@@ -322,7 +335,6 @@
 		}
 
 		&__section {
-			pointer-events: none;
 			position: relative;
 			z-index: 5;
 			@media only screen and (min-width: 769px) {
@@ -383,7 +395,6 @@
 		}
 
 		&__card {
-			pointer-events: all;
 			@media only screen and (min-width: 769px) {
 				margin-top: 20px;
 				margin-right: 20px;
@@ -431,7 +442,7 @@
 			}
 			@media only screen and (max-width: 768px) {
 				position: relative;
-				z-index: 4;
+				z-index: 5;
 				width: 100%;
 				height: 50px;
 				font-size: 16px;

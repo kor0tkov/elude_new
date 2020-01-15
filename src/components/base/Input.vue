@@ -10,6 +10,11 @@
         type: String,
         default: '',
       },
+      required: {
+        type: Boolean,
+        default: false
+      },
+      id: String,
       value: String
     },
     methods: {
@@ -23,7 +28,7 @@
 <template>
   <div class="input">
     <span class="input__title">{{ title }}</span>
-    <input :placeholder="placeholder" :value="value" v-on:input="updateInput($event)" class="input__item" />
+    <input :id="id" :placeholder="placeholder" :required="required" :value="value" v-on:input="updateInput($event)" class="input__item" />
   </div>
 </template>
 

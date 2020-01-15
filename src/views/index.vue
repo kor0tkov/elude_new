@@ -30,7 +30,7 @@
 		position: absolute;
 		z-index: 0;
 
-		.second-window & {
+		.second-screen & {
 			z-index: 2;
 		}
 	}
