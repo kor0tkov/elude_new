@@ -71,18 +71,6 @@
             shuffleArray(arr) {
                 arr.sort(() => Math.random() - 0.5)
             },
-            /*onScrollToEvents(selector) {
-							const element = document.querySelector(selector);
-							const offsetPosition = element.offsetTop;
-							window.scrollTo({
-								top: offsetPosition,
-								left: 0,
-								behavior: 'smooth',
-							});
-						},
-						removeFromList(id) {
-							this.cards = this.cards.filter(item => item.id !== id);
-						},*/
             moveBottom() {
                 document.getElementsByTagName('html')[0].scrollTop = 1;
             },
@@ -143,23 +131,6 @@
                 return window.scrollY > 100;
             }
         },
-        created() {
-        },
-        /*mounted() {
-					const html = document.getElementsByTagName('html')[0];
-					const container = document.getElementsByClassName('main-screen__container')[0];
-					//document.body.style.overflow = "hidden";
-					this.scrollEventFunc = () => {
-						if (html.scrollTop > 0) {
-							document.removeEventListener('scroll', this.scrollEventFunc);
-							container.classList.add("main-screen__container_active");
-							this.onScrollToEvents('#join');
-						} else {
-							container.classList.remove("main-screen__container_active")
-						}
-					};
-					document.addEventListener('scroll', this.scrollEventFunc);
-				}*/
     };
 </script>
 
@@ -199,7 +170,6 @@
 	.main-screen {
 		height: calc(100vh + 1px);
 		width: 100%;
-
 		&__container {
 			top: 0;
 			transition: 0.5s;
@@ -221,12 +191,10 @@
 			opacity: 1;
 			transition: .5s;
 		}
-
 		.header-hide {
 			opacity: 0;
 			transition: .5s;
 		}
-
 		&__header {
 			position: relative;
 			z-index: 5;
@@ -263,13 +231,11 @@
 				}
 			}
 		}
-
 		.title-hide {
 			opacity: 0;
-			transform: translateX(-100%);
+			transform: translateX(-200%);
 			transition: .7s;
 		}
-
 		&__title {
 			position: absolute;
 			max-width: 1000px;
@@ -335,6 +301,7 @@
 		}
 
 		&__section {
+			//pointer-events: none;
 			position: relative;
 			z-index: 5;
 			@media only screen and (min-width: 769px) {
@@ -345,7 +312,6 @@
 			}
 			@media only screen and (max-width: 768px) {
 			}
-
 			.cards-hide & {
 				transition: .7s;
 				opacity: 0;
@@ -354,17 +320,30 @@
 				animation-duration: 0.5s;
 				animation-timing-function: ease-out;
 			}
-
 			.cards-show-up & {
 				z-index: 11;
 				transition: 1s;
 				opacity: 1;
-				/*animation-name: card-show;*/
-				/*animation-duration: 0.7s;*/
-				/*animation-timing-function: ease-out;*/
 			}
 		}
 
+		&__cards-inner {
+			@media only screen and (min-width: 768px) {
+				height: 220px;
+				display: flex;
+				align-items: flex-end;
+				overflow: hidden;
+      }
+      @media only screen and (max-width: 768px) {
+        width: calc(100% + 20px);
+				overflow-x: scroll;
+				-webkit-overflow-scrolling: touch;
+      }
+      @media only screen and (width: 768px) {
+        width: 100%;
+				overflow: hidden;
+      }
+    }
 		&__cards {
 			display: flex;
 			@media only screen and (min-width: 768px) {
@@ -372,28 +351,17 @@
 			}
 			@media only screen and (max-width: 1200px) {
 				height: 220px;
-				padding: 100px 40px 50px 20px;
-				overflow-x: scroll;
-				/*overflow-y: hidden;*/
-				-webkit-overflow-scrolling: touch;
 			}
-
-			&-inner {
-				overflow: hidden;
+      @media only screen and (width: 768px) {
 				width: 100%;
-				@media only screen and (max-width: 768px) {
-					overflow: hidden;
-					height: 320px;
-					width: calc(100% + 40px);
-					margin: 0 -20px;
-				}
-				@media only screen and (min-width: 768px) {
-					height: 240px;
-				}
-			}
+        justify-content: space-between;
+      }
 		}
 
 		&__card {
+			pointer-events: all;
+      animation-duration: 0.5s;
+      animation-timing-function: ease-out;
 			@media only screen and (min-width: 769px) {
 				margin-top: 20px;
 				margin-right: 20px;
@@ -401,27 +369,22 @@
 			@media only screen and (max-width: 768px) {
 				margin-right: 10px;
 			}
-			animation-duration: 0.5s;
-			animation-timing-function: ease-out;
-
 			&:nth-child(1) {
 				animation-name: card-show;
 				animation-duration: 0.5s;
 			}
-
 			&:nth-child(2) {
 				animation-name: card-show;
 				animation-duration: 1s;
 			}
-
 			&:nth-child(3) {
 				animation-name: card-show;
 				animation-duration: 1.5s;
 			}
-
 			&:nth-child(4) {
 				animation-name: card-show;
 				animation-duration: 2s;
+        margin-right: 0;
 			}
 
 			.cards-show-up & {
@@ -450,6 +413,11 @@
 				font-size: 16px;
 				margin-top: 20px;
 			}
+      @media only screen and (width: 768px) {
+        width: 30%;
+        left: 50%;
+        transform: translateX(-50%);
+      }
 		}
 
 		.arrow-hide {

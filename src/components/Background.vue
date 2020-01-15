@@ -61,7 +61,14 @@
 				right: 0;
 				transform: translateX(10px);
 			}
-			@media only screen and (max-width: 768px) {
+			@media only screen and (width: 768px) {
+				width: 80%;
+				height: 50%;
+				max-width: 768px;
+				min-height: 640px;
+				top: 12vh;
+				left: 50%;
+				transform: translateX(-50%);
 			}
 
 			&_show {
@@ -97,6 +104,19 @@
 						}
 						50% {
 							transform: translateY(4%) translateX(5%);
+						}
+						to {
+							background-position: center;
+						}
+					}
+				}
+				@media only screen and (width: 768px) {
+					@keyframes plane-move {
+						from {
+							background-position: center;
+						}
+						50% {
+							transform: translateY(15%) translateX(-55%);
 						}
 						to {
 							background-position: center;

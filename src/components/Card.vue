@@ -49,15 +49,19 @@
 		padding: 20px;
 		user-select: none;
 		outline: none;
-
 		@media only screen and (min-width: 769px) {
 			width: 180px;
 			height: 220px;
 		}
 		@media only screen and (max-width: 768px) {
-			width: 55%;
+			width: 170px;
+      height: 220px;
 			flex: 0 0 auto;
 		}
+    @media only screen and (width: 768px) {
+      width: 170px;
+      height: 220px;
+    }
 
 		&__date {
 			display: block;

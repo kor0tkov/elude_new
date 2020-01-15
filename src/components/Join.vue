@@ -119,6 +119,9 @@ export default {
       height: 50px;
       font-size: 16px;
     }
+    @media only screen and (width: 768px) {
+      width: 30%;
+    }
   }
   &__modal {
   }
