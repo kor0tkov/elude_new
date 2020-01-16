@@ -17,7 +17,6 @@
         },
         data() {
             return {
-                showModal: true,
                 isSend: false,
                 inputs: [
                     {title: 'Your Name', id: 'name', placeholder: 'Paul', value: ''},
@@ -53,7 +52,7 @@
                 this.isSend = true;
                 setTimeout(() => {
                     this.isSend = false;
-                    this.showModal = false;
+                    this.$emit('close');
                     this.inputs = this.inputs.map((el) => {
                         el.value = '';
                         return el;
@@ -66,7 +65,7 @@
 </script>
 
 <template>
-	<div v-if="showModal" class="modal">
+	<div class="modal">
 		<div class="modal__window">
 			<h2 class="modal__title">{{ title }}</h2>
 			<div @click="$emit('close')" class="modal__close"></div>

@@ -4,7 +4,7 @@ if ($_POST) {
   $user = $_POST;
 
 //   $to_Email = 'hello@elude.co';
-  $to_Email = 'prgrf@ya.ru';
+  $to_Email = 'paul@pixelscrew.com';
   $subject = 'New Elude Request';
   $headers ="From: Elude Today <hello@elude.co>\nReply-to:hello@eludetoday.com\nContent-Type: text/plain;";
 
