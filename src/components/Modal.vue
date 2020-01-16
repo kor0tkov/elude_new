@@ -17,7 +17,6 @@
         },
         data() {
             return {
-                showModal: true,
                 isSend: false,
                 inputs: [
                     {title: 'Your Name', id: 'name', placeholder: 'Paul', value: ''},
@@ -53,7 +52,7 @@
                 this.isSend = true;
                 setTimeout(() => {
                     this.isSend = false;
-                    this.showModal = false;
+                    this.$emit('close');
                     this.inputs = this.inputs.map((el) => {
                         el.value = '';
                         return el;
@@ -66,28 +65,30 @@
 </script>
 
 <template>
-  <div v-if="showModal" class="modal">
-    <h2 class="modal__title">{{ title }}</h2>
-    <div @click="$emit('close')" class="modal__close"></div>
-    <p class="modal__subtitle">{{ subtitle }}</p>
-    <div class="modal__inputs">
-      <Input
-        v-for="item in inputs"
-        :key="item.title"
-        :title="item.title"
-        :placeholder="item.placeholder"
-        :id="item.id"
-        required
-        v-model="item.value"
-        class="modal__input"/>
-    </div>
-    <Button
-      :disabled="isSend"
-      :text="isSend ? 'Ваша заявка успешно отправлена!' : 'Submit'"
-      @click="sendForm()"
-      class="modal__button"
-    />
-  </div>
+	<div class="modal">
+		<div class="modal__window">
+			<h2 class="modal__title">{{ title }}</h2>
+			<div @click="$emit('close')" class="modal__close"></div>
+			<p class="modal__subtitle">{{ subtitle }}</p>
+			<div class="modal__inputs">
+				<Input
+					v-for="item in inputs"
+					:key="item.title"
+					:title="item.title"
+					:placeholder="item.placeholder"
+					:id="item.id"
+					required
+					v-model="item.value"
+					class="modal__input"/>
+			</div>
+			<Button
+				:disabled="isSend"
+				:text="isSend ? 'Ваша заявка успешно отправлена!' : 'Submit'"
+				@click="sendForm()"
+				class="modal__button"
+			/>
+		</div>
+	</div>
 </template>
 
 <style lang="scss">
