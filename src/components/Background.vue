@@ -232,6 +232,11 @@
 						background-position: left;
 					}
 				}
+
+				.second-screen & {
+					opacity: 0;
+					transition: .25s;
+				}
 			}
 
 			&_3 {
