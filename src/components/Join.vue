@@ -152,6 +152,8 @@ export default {
     bottom: 0;
   }
   &__modal {
+    border: 1px solid #000;
+    border-radius: 5px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
   }
   .fade-enter-active, .fade-leave-active {
