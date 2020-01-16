@@ -66,63 +66,46 @@
 </script>
 
 <template>
-	<div v-if="showModal" class="modal">
-		<div class="modal__window">
-			<h2 class="modal__title">{{ title }}</h2>
-			<div @click="$emit('close')" class="modal__close"></div>
-			<p class="modal__subtitle">{{ subtitle }}</p>
-			<div class="modal__inputs">
-				<Input
-					v-for="item in inputs"
-					:key="item.title"
-					:title="item.title"
-					:placeholder="item.placeholder"
-					:id="item.id"
-					required
-					v-model="item.value"
-					class="modal__input"/>
-			</div>
-			<Button
-				:disabled="isSend"
-				:text="isSend ? 'Ваша заявка успешно отправлена!' : 'Submit'"
-				@click="sendForm()"
-				class="modal__button"
-			/>
-		</div>
-	</div>
+  <div v-if="showModal" class="modal">
+    <h2 class="modal__title">{{ title }}</h2>
+    <div @click="$emit('close')" class="modal__close"></div>
+    <p class="modal__subtitle">{{ subtitle }}</p>
+    <div class="modal__inputs">
+      <Input
+        v-for="item in inputs"
+        :key="item.title"
+        :title="item.title"
+        :placeholder="item.placeholder"
+        :id="item.id"
+        required
+        v-model="item.value"
+        class="modal__input"/>
+    </div>
+    <Button
+      :disabled="isSend"
+      :text="isSend ? 'Ваша заявка успешно отправлена!' : 'Submit'"
+      @click="sendForm()"
+      class="modal__button"
+    />
+  </div>
 </template>
 
 <style lang="scss">
 	.modal {
-		position: absolute;
-		z-index: 6;
-		width: 100%;
-		height: 100%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		background-color: rgba(0, 0, 0, 0.71);
-		top: 0;
-		right: 0;
-		left: 0;
-		bottom: 0;
-
-		&__window {
-			position: relative;
-			z-index: 7;
-			box-sizing: border-box;
-			background-color: #ffffff;
-			@media only screen and (min-width: 769px) {
-				width: 620px;
-				padding: 30px 50px 50px;
-			}
-			@media only screen and (max-width: 768px) {
-				height: 100%;
-				width: 100%;
-				padding: 30px;
-				overflow: scroll;
-			}
-		}
+    position: relative;
+    z-index: 7;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    @media only screen and (min-width: 769px) {
+      width: 620px;
+      padding: 30px 50px 50px;
+    }
+    @media only screen and (max-width: 768px) {
+      height: 100%;
+      width: 100%;
+      padding: 30px;
+      overflow: scroll;
+    }
 
 		&__close {
 			position: absolute;

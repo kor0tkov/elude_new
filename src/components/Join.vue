@@ -11,6 +11,16 @@ export default {
       text: 'Stay tuned for the app launch that will include flight and hotel packages as well as other cities will be added to the flight deals coming soon! ',
     };
   },
+  methods: {
+    openModal() {
+      this.showModal = true;
+    },
+    closeModal() {
+      if (this.showModal) {
+        this.showModal = false;
+      }
+    }
+  }
 };
 </script>
 
@@ -21,16 +31,17 @@ export default {
       <div class="join__content">
         <h2 class="join__title">Join Us</h2>
         <p class="join__text">{{ text }}</p>
-        <Button @click="showModal = true" text="I'm In, Let's Go!" class="join__button" />
+        <Button v-click-outside="closeModal" @click="openModal" text="I'm In, Let's Go!" class="join__button" />
       </div>
     </Container>
-    <Modal
-      v-if="showModal"
-      @close="showModal = false"
-      title="Join Us"
-      subtitle="Keep up-to-date and be amongst the first to get access our platform."
-      class="join__modal"
-    />
+    <div v-if="showModal" class="join__modal-wrapper">
+      <Modal
+        @close="!showModal"
+        title="Join Us"
+        subtitle="Keep up-to-date and be amongst the first to get access our platform."
+        class="join__modal"
+      />
+    </div>
   </div>
 </template>
 
@@ -122,6 +133,20 @@ export default {
     @media only screen and (width: 768px) {
       width: 30%;
     }
+  }
+  &__modal-wrapper {
+    position: absolute;
+    z-index: 6;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.71);
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
   }
   &__modal {
   }
