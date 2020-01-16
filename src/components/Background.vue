@@ -84,32 +84,6 @@
 				z-index: 2;
 				background-image: url('../../src/assets/img/background/clouds-2.png');
 				background-repeat: repeat-x;
-				animation-name: clouds-2;
-				animation-iteration-count: infinite;
-				animation-timing-function: linear;
-				@media only screen and (min-width: 769px) {
-					width: 200vw;
-					background-size: 100vw 100vh;
-					animation-duration: 20s;
-				}
-				@media only screen and (max-width: 768px) {
-					width: 400vw;
-					background-size: 200vw 100vh;
-					animation-duration: 10s;
-				}
-				@keyframes clouds-2 {
-					from {
-						background-position: right;
-					}
-					to {
-						background-position: left;
-					}
-				}
-
-				.second-screen & {
-					opacity: 0;
-					transition: .25s;
-				}
 			}
 
 			&_3 {
