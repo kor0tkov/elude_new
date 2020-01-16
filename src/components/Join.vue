@@ -34,20 +34,23 @@ export default {
         <Button v-click-outside="closeModal" @click="openModal" text="I'm In, Let's Go!" class="join__button" />
       </div>
     </Container>
-    <div v-if="showModal" class="join__modal-wrapper">
-      <Modal
-        @close="!showModal"
-        title="Join Us"
-        subtitle="Keep up-to-date and be amongst the first to get access our platform."
-        class="join__modal"
-      />
-    </div>
+    <transition name="fade">
+      <div v-if="showModal" class="join__modal-wrapper">
+        <Modal
+          v-click-outside="closeModal"
+          @close="closeModal"
+          title="Join Us"
+          subtitle="Keep up-to-date and be amongst the first to get access our platform."
+          class="join__modal"
+        />
+      </div>
+    </transition>
   </div>
 </template>
 
 <style lang="scss">
 .join {
-  height: 100vh;
+  height: calc(100vh + 1px);
   width: 100%;
   overflow: hidden;
   .join-show {
@@ -149,6 +152,13 @@ export default {
     bottom: 0;
   }
   &__modal {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  }
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
+  }
+  .fade-enter, .fade-leave-to {
+    opacity: 0;
   }
 }
 </style>
