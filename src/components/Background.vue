@@ -59,7 +59,7 @@
 
 		&__clouds {
 			position: absolute;
-			background-size: cover;
+			/*background-size: cover;*/
 			background-position: center;
 			background-repeat: no-repeat;
 
@@ -81,32 +81,19 @@
 
 			&_2 {
 				height: 100vh;
+				width: 400vw;
+				background-size: 200vw 100vh;
 				z-index: 2;
 				background-image: url('../../src/assets/img/background/clouds-2.png');
 				background-repeat: repeat-x;
-				animation-name: clouds-2;
+				animation-name: move-clouds-left;
 				animation-iteration-count: infinite;
 				animation-timing-function: linear;
 				animation-duration: 20s;
 
-				@media only screen and (min-width: 769px) {
+				@media only screen and (min-width: 768px) {
 					width: 200vw;
 					background-size: 100vw 100vh;
-					animation-duration: 20s;
-				}
-
-				@media only screen and (max-width: 768px) {
-					width: 400vw;
-					background-size: 200vw 100vh;
-				}
-
-				@keyframes clouds-2 {
-					from {
-						background-position: right;
-					}
-					to {
-						background-position: left;
-					}
 				}
 
 				.second-screen & {
@@ -125,21 +112,13 @@
 				background-position: bottom;
 				background-repeat: repeat-x;
 				background-size: 100vw $clouds-height;
-				animation-name: clouds-3;
+				animation-name: move-clouds-left;
 				animation-iteration-count: infinite;
 				animation-timing-function: linear;
 				animation-duration: 20s;
 				@media only screen and (max-width: 768px) {
 					width: 400vw;
 					background-size: 200vw $clouds-height;
-				}
-				@keyframes clouds-3 {
-					from {
-						background-position: right;
-					}
-					to {
-						background-position: left;
-					}
 				}
 			}
 		}

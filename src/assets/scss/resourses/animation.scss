@@ -254,7 +254,7 @@
 
 .background__clouds {
   &_2 {
-    animation-name: clouds-2;
+    animation-name: move-clouds-left;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
     @media only screen and (min-width: 769px) {
@@ -281,7 +281,7 @@
     }
   }
   &_3 {
-    animation-name: clouds-3;
+    animation-name: move-clouds-left;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
     @media only screen and (min-width: 769px) {
@@ -298,5 +298,14 @@
         background-position: right;
       }
     }
+  }
+}
+
+@keyframes move-clouds-left {
+  from {
+    background-position: right;
+  }
+  to {
+    background-position: left;
   }
 }
