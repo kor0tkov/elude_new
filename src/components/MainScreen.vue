@@ -350,12 +350,25 @@
 				height: 240px;
 			}
 			@media only screen and (max-width: 1200px) {
-				height: 220px;
+				height: 270px;
+				padding: 0 20px;
+				overflow-x: scroll;
+				overflow-y: hidden;
+				-webkit-overflow-scrolling: touch;
 			}
       @media only screen and (width: 768px) {
 				width: 100%;
         justify-content: space-between;
       }
+
+			&-inner {
+				@media only screen and (max-width: 1200px) {
+					height: 220px;
+					overflow: hidden;
+					margin: 0 -20px;
+					width: calc(100% + 40px);
+				}
+			}
 		}
 
 		&__card {

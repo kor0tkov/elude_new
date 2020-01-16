@@ -214,16 +214,19 @@
 				animation-name: clouds-2;
 				animation-iteration-count: infinite;
 				animation-timing-function: linear;
+				animation-duration: 20s;
+
 				@media only screen and (min-width: 769px) {
 					width: 200vw;
 					background-size: 100vw 100vh;
 					animation-duration: 20s;
 				}
+
 				@media only screen and (max-width: 768px) {
 					width: 400vw;
 					background-size: 200vw 100vh;
-					animation-duration: 10s;
 				}
+
 				@keyframes clouds-2 {
 					from {
 						background-position: right;
@@ -252,18 +255,17 @@
 				animation-name: clouds-3;
 				animation-iteration-count: infinite;
 				animation-timing-function: linear;
-				@media only screen and (min-width: 769px) {
-					animation-duration: 20s;
-				}
+				animation-duration: 20s;
 				@media only screen and (max-width: 768px) {
-					animation-duration: 50s;
+					width: 400vw;
+					background-size: 200vw $clouds-height;
 				}
 				@keyframes clouds-3 {
 					from {
-						background-position: left;
+						background-position: right;
 					}
 					to {
-						background-position: right;
+						background-position: left;
 					}
 				}
 			}
