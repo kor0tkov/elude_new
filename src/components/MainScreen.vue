@@ -15,7 +15,7 @@
             Card,
             Header,
             Background,
-            Container
+            Container,
         },
         props: {
             routes: Array
@@ -187,121 +187,22 @@
 			}
 		}
 
-		.header-show {
-			opacity: 1;
-			transition: .5s;
-		}
-		.header-hide {
-			opacity: 0;
-			transition: .5s;
-		}
 		&__header {
 			position: relative;
 			z-index: 5;
 		}
 
-		.title-show {
-			animation-name: title-showw;
-			animation-duration: 1.5s;
-			animation-iteration-count: 1;
-			animation-direction: alternate;
-			animation-timing-function: ease;
-			@media only screen and (min-width: 769px) {
-				@keyframes title-showw {
-					from {
-						opacity: 0;
-						left: -100%;
-					}
-					to {
-						opacity: 0.5;
-						left: 200px;
-					}
-				}
-			}
-			@media only screen and (max-width: 768px) {
-				@keyframes title-show {
-					from {
-						opacity: 0;
-						left: -100%;
-					}
-					to {
-						opacity: 0.5;
-						left: 20px;
-					}
-				}
-			}
-		}
-		.title-hide {
-			opacity: 0;
-			transform: translateX(-200%);
-			transition: .7s;
-		}
 		&__title {
-			position: absolute;
-			max-width: 1000px;
-			z-index: 2;
-			font-weight: 800;
-			opacity: 0.5;
-			color: #918b8c;
-			letter-spacing: 1px;
-			animation-name: title-show;
-			animation-duration: 1.5s;
-			animation-iteration-count: 1;
-			animation-direction: alternate;
-			animation-timing-function: ease;
-			@media only screen and (min-width: 769px) {
-				font-size: 11.5vw;
-				line-height: 166px;
-				top: 14vh;
-			}
-			@media only screen and (max-width: 768px) {
-				font-size: 100px;
-				line-height: 114px;
-				top: 8vh;
-			}
-			@media only screen and (min-width: 769px) {
-				@keyframes title-show {
-					from {
-						opacity: 0;
-						left: -100%;
-					}
-					to {
-						opacity: 0.5;
-						left: 200px;
-					}
-				}
-			}
-			@media only screen and (max-width: 768px) {
-				@keyframes title-show {
-					from {
-						opacity: 0;
-						left: -100%;
-					}
-					to {
-						opacity: 0.5;
-						left: 20px;
-					}
-				}
-			}
-
-			.second-screen & {
-				animation: none;
-				opacity: 0;
-			}
-		}
-
-		@keyframes card-show {
-			from {
-				opacity: 0;
-				transform: translateY(-100%);
-			}
-			to {
-				opacity: 1;
-			}
-		}
+      position: absolute;
+      max-width: 1000px;
+      z-index: 2;
+      font-weight: 800;
+      opacity: 0.5;
+      color: #918b8c;
+      letter-spacing: 1px;
+    }
 
 		&__section {
-			//pointer-events: none;
 			position: relative;
 			z-index: 5;
 			@media only screen and (min-width: 769px) {
@@ -309,21 +210,6 @@
 				justify-content: space-between;
 				align-items: flex-end;
 				z-index: 11;
-			}
-			@media only screen and (max-width: 768px) {
-			}
-			.cards-hide & {
-				transition: .7s;
-				opacity: 0;
-				z-index: -1;
-				animation-name: cards-hide;
-				animation-duration: 0.5s;
-				animation-timing-function: ease-out;
-			}
-			.cards-show-up & {
-				z-index: 11;
-				transition: 1s;
-				opacity: 1;
 			}
 		}
 
@@ -433,10 +319,6 @@
       }
 		}
 
-		.arrow-hide {
-			opacity: 0;
-		}
-
 		&__arrow {
 			position: absolute;
 			z-index: 5;
@@ -462,4 +344,5 @@
 			}
 		}
 	}
+  @import "/../assets/scss/resourses/animation.scss";
 </style>
