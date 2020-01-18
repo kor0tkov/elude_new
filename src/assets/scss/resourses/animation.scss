@@ -1,66 +1,25 @@
-.header-show {
-  opacity: 1;
-  transition: .5s;
-}
-
 .header-hide {
   opacity: 0;
   transition: .5s;
 }
 
-.title-show {
-  animation-name: title-showw;
-  animation-duration: 1.5s;
-  animation-iteration-count: 1;
-  animation-direction: alternate;
-  animation-timing-function: ease;
-  @media only screen and (min-width: 769px) {
-    @keyframes title-showw {
-      from {
-        opacity: 0;
-        left: -100%;
-      }
-      to {
-        opacity: 0.5;
-        left: 200px;
-      }
-    }
-  }
-  @media only screen and (max-width: 768px) {
-    @keyframes title-show {
-      from {
-        opacity: 0;
-        left: -100%;
-      }
-      to {
-        opacity: 0.5;
-        left: 20px;
-      }
-    }
-  }
+.header-show {
+  opacity: 1;
+  transition: .5s;
 }
+
 .title-hide {
   opacity: 0;
   transform: translateX(-200%);
   transition: .7s;
 }
 
-.main-screen__title {
+.title-show {
   animation-name: title-show;
   animation-duration: 1.5s;
   animation-iteration-count: 1;
   animation-direction: alternate;
   animation-timing-function: ease;
-  @media only screen and (min-width: 769px) {
-    font-size: 11.5vw;
-    line-height: 166px;
-    top: 14vh;
-  }
-  @media only screen and (max-width: 768px) {
-    font-size: 100px;
-    line-height: 114px;
-    top: 8vh;
-  }
   @media only screen and (min-width: 769px) {
     @keyframes title-show {
       from {
@@ -91,29 +50,52 @@
   }
 }
 
-@keyframes card-show {
-  from {
-    opacity: 0;
-    transform: translateY(-100%);
-  }
-  to {
-    opacity: 1;
-  }
+.cards-hide {
+  transition: .7s;
+  opacity: 0;
+  z-index: -1;
+  animation-name: cards-hide;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
 }
 
 .main-screen__section {
-  .cards-hide & {
-    transition: .7s;
-    opacity: 0;
-    z-index: -1;
-    animation-name: cards-hide;
+  .cards-show-up {
+    pointer-events: all;
+    animation-name: card-show;
     animation-duration: 0.5s;
     animation-timing-function: ease-out;
-  }
-  .cards-show-up & {
-    z-index: 11;
-    transition: 1s;
-    opacity: 1;
+    @media only screen and (min-width: 769px) {
+      margin-top: 20px;
+      margin-right: 20px;
+    }
+    @media only screen and (max-width: 768px) {
+      margin-right: 10px;
+    }
+    @keyframes card-show {
+      from {
+        opacity: 0;
+        transform: translateY(-100%);
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    &:nth-child(1) {
+      animation-duration: 0.5s;
+    }
+    &:nth-child(2) {
+      animation-duration: 1s;
+    }
+    &:nth-child(3) {
+      animation-duration: 1.5s;
+    }
+    &:nth-child(4) {
+      animation-duration: 2s;
+    }
+    &:last-child {
+      margin-right: 0;
+    }
   }
 }
 
@@ -138,88 +120,70 @@
   }
 }
 
-.background__plane {
-  &_show {
-    animation-name: plane-show, plane-move;
-    animation-duration: 1.5s, 10s;
-    animation-delay: 0s, 2s;
-    animation-iteration-count: 1, infinite;
-    @keyframes plane-show {
+.plane-transform {
+  animation-name: plane-show, plane-move;
+  animation-duration: 1.5s, 7s;
+  animation-delay: 0s, 1.4s;
+  animation-iteration-count: 1, infinite;
+  @keyframes plane-show {
+    from {
+      transform: translateX(-100%) translateY(100%);
+    }
+    to {
+      background-position: center;
+    }
+  }
+  @media only screen and (min-width: 769px) {
+    @keyframes plane-move {
       from {
-        transform: translateX(-100%) translateY(100%);
+        background-position: center;
+      }
+      50% {
+        transform: translateY(-4%) translateX(-48%);
       }
       to {
         background-position: center;
       }
     }
-    @media only screen and (min-width: 769px) {
-      @keyframes plane-move {
-        from {
-          background-position: center;
-        }
-        50% {
-          transform: translateY(-4%) translateX(-48%);
-        }
-        to {
-          background-position: center;
-        }
+  }
+  @media only screen and (max-width: 768px) {
+    @keyframes plane-move {
+      from {
+        background-position: center;
+      }
+      50% {
+        transform: translateY(4%) translateX(5%);
+      }
+      to {
+        background-position: center;
       }
     }
-    @media only screen and (max-width: 768px) {
-      @keyframes plane-move {
-        from {
-          background-position: center;
-        }
-        50% {
-          transform: translateY(4%) translateX(5%);
-        }
-        to {
-          background-position: center;
-        }
+  }
+  @media only screen and (width: 768px) {
+    @keyframes plane-move {
+      from {
+        background-position: center;
       }
-    }
-    @media only screen and (width: 768px) {
-      @keyframes plane-move {
-        from {
-          background-position: center;
-        }
-        50% {
-          transform: translateY(15%) translateX(-55%);
-        }
-        to {
-          background-position: center;
-        }
+      50% {
+        transform: translateY(15%) translateX(-55%);
+      }
+      to {
+        background-position: center;
       }
     }
   }
 }
 
-.clouds-show {
-  animation-name: clouds-show;
-  animation-duration: 1.5s;
-  animation-iteration-count: 1;
-  opacity: 1;
-  @keyframes clouds-show {
+.clouds-transform-down {
+  background-size: 100% 100%;
+  animation-name: clouds-transform-down;
+  animation-duration: 1s;
+  @keyframes clouds-transform-down {
     from {
-      transform: translateY(-100%);
+      background-size: 100% 60%;
     }
     to {
-      opacity: 1;
-    }
-  }
-}
-
-.clouds-hide {
-  animation-name: clouds-hide;
-  animation-duration: 1.5s;
-  animation-iteration-count: 1;
-  opacity: 0;
-  @keyframes clouds-hide {
-    from {
-      opacity: 1;
-    }
-    to {
-      transform: translateY(-100%);
+      background-size: 100% 100%;
     }
   }
 }
@@ -234,20 +198,6 @@
     }
     to {
       background-size: 100% 60%;
-    }
-  }
-}
-
-.clouds-transform {
-  background-size: 100% 100%;
-  animation-name: clouds-transform;
-  animation-duration: 1s;
-  @keyframes clouds-transform {
-    from {
-      background-size: 100% 60%;
-    }
-    to {
-      background-size: 100% 100%;
     }
   }
 }
@@ -267,45 +217,25 @@
       background-size: 200vw 100vh;
       animation-duration: 10s;
     }
-    @keyframes clouds-2 {
-      from {
-        background-position: right;
-      }
-      to {
-        background-position: left;
-      }
-    }
-    .second-screen & {
-      opacity: 0;
-      transition: .25s;
-    }
   }
   &_3 {
     animation-name: move-clouds-left;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
+    animation-duration: 20s;
     @media only screen and (min-width: 769px) {
       animation-duration: 20s;
     }
     @media only screen and (max-width: 768px) {
       animation-duration: 50s;
     }
-    @keyframes clouds-3 {
+    @keyframes move-clouds-left {
       from {
-        background-position: left;
-      }
-      to {
         background-position: right;
       }
+      to {
+        background-position: left;
+      }
     }
-  }
-}
-
-@keyframes move-clouds-left {
-  from {
-    background-position: right;
-  }
-  to {
-    background-position: left;
   }
 }

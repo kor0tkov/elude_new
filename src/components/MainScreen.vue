@@ -28,7 +28,7 @@
                     {id: 3, date: '4 Oct - 12 Oct', city: 'Rome', cost: '$639'},
                     {id: 4, date: '21 Sep - 25 Sep', city: 'Rio de Janeiro', cost: '$820'},
                 ],
-                scrollEventFunc: null
+                scrollEventFunc: null,
             };
         },
         computed: {
@@ -69,7 +69,7 @@
                 });
             },
             shuffleArray(arr) {
-                arr.sort(() => Math.random() - 0.5)
+                arr.sort(() => Math.random() - 0.5);
             },
             moveBottom() {
                 document.getElementsByTagName('html')[0].scrollTop = 1;
@@ -80,55 +80,56 @@
                 const header = document.getElementById('header');
                 const title = document.getElementById('title');
                 const join = document.getElementById('join-container');
-                const clouds_0 = document.getElementById('clouds_0');
                 const clouds_1 = document.getElementById('clouds_1');
                 const arrow = document.getElementById('arrow');
 
                 if (window.scrollY === 0) {
-                    app.classList.remove('second-screen');
-                    if (el)
-                        el.classList.add("cards-show-up");
-                    header.classList.add("header-show");
-                    if (title)
-                        title.classList.add("title-show");
-                    clouds_0.classList.add("clouds-hide");
-                    clouds_1.classList.add("clouds-transform-up");
-                    join.classList.add("join-hide");
+									app.classList.remove('second-screen');
+									if (el)
+											//el.classList.add("cards-show-up");
+									header.classList.add("header-show");
+									if (title)
+											title.classList.add("title-show");
+									plane.classList.add("plane-transform");
+									clouds_1.classList.add("clouds-transform-up");
+									join.classList.add("join-hide");
 
-                    if (el)
-                        el.classList.remove("cards-hide");
-                    plane.classList.remove("plane-hide");
-                    header.classList.remove("header-hide");
-                    if (title)
-                        title.classList.remove("title-hide");
-                    clouds_0.classList.remove("clouds-hide");
-                    clouds_1.classList.remove("clouds-transform");
-                    arrow.classList.remove("arrow-hide");
-                    join.classList.remove("join-show");
+									if (el)
+											//el.classList.remove("cards-hide");
+									plane.classList.remove("plane-hide");
+									header.classList.remove("header-hide");
+									if (title)
+											title.classList.remove("title-hide");
+									clouds_1.classList.remove("clouds-transform-down");
+									arrow.classList.remove("arrow-hide");
+									join.classList.remove("join-show");
                 }
                 if (window.scrollY >= 1) {
-                    app.classList.add('second-screen');
-                    if (el)
-                        el.classList.add("cards-hide");
-                    header.classList.add("header-hide");
-                    if (title)
-                        title.classList.add("title-hide");
-                    plane.classList.add("plane-hide");
-                    clouds_0.classList.add("clouds-hide");
-                    clouds_1.classList.add("clouds-transform");
-                    arrow.classList.add("arrow-hide");
-                    join.classList.add("join-show");
+									this.isFirstScreen = false;
+									// eslint-disable-next-line no-console
+									console.log(this.isFirstScreen);
+									app.classList.add('second-screen');
+									if (el)
+											//el.classList.add("cards-hide");
+									header.classList.add("header-hide");
+									if (title)
+											title.classList.add("title-hide");
+									plane.classList.add("plane-hide");
+									clouds_1.classList.add("clouds-transform-down");
+									arrow.classList.add("arrow-hide");
+									join.classList.add("join-show");
 
-                    el.classList.remove("cards-show-up");
-                    if (el)
-                        header.classList.remove("header-show");
-                    if (title)
-                        title.classList.remove("title-show");
-                    clouds_0.classList.remove("clouds-hide");
-                    clouds_1.classList.remove("clouds-transform-up");
-                    join.classList.remove("join-hide");
+									el.classList.remove("cards-show-up");
+									if (el)
+											header.classList.remove("header-show");
+									if (title)
+											title.classList.remove("title-show");
+									plane.classList.remove("plane-transform");
+									clouds_1.classList.remove("clouds-transform-up");
+									join.classList.remove("join-hide");
                 }
                 return window.scrollY > 100;
+
             }
         },
     };
@@ -138,11 +139,14 @@
 	<div class="main-screen">
 		<Background class="main-screen__background"/>
 		<Container v-scroll="handleScroll" class="main-screen__container">
-			<Header id="header" @shuffle="shuffleArray(routes)" class="main-screen__header"/>
+			<Header
+				@shuffle="shuffleArray(routes)"
+				class="main-screen__header"
+			/>
 			<div id="title" class="main-screen__title" v-if="cityName">From {{cityName}}</div>
 			<div class="main-screen__section">
-				<div class="main-screen__cards-inner">
-					<div class="main-screen__cards" v-if="quickRoutes && quickRoutes.length > 0">
+				<div v-if="quickRoutes && quickRoutes.length > 0" class="main-screen__cards-inner">
+					<div class="main-screen__cards">
 						<Card
 							v-for="(route, idx) in quickRoutes"
 							:key="idx"
@@ -190,6 +194,10 @@
 		&__header {
 			position: relative;
 			z-index: 5;
+			transition: opacity .5s;
+		}
+		.fade-leave-to {
+			opacity: 0;
 		}
 
 		&__title {
@@ -200,6 +208,17 @@
       opacity: 0.5;
       color: #918b8c;
       letter-spacing: 1px;
+			@media only screen and (min-width: 769px) {
+				font-size: 11.5vw;
+				line-height: 166px;
+				top: 14vh;
+				transform: translateX(-10px);
+			}
+			@media only screen and (max-width: 768px) {
+				font-size: 100px;
+				line-height: 114px;
+				top: 8vh;
+			}
     }
 
 		&__section {
@@ -214,12 +233,19 @@
 		}
 
 		&__cards-inner {
+			transition: 1s;
 			@media only screen and (min-width: 768px) {
 				height: 220px;
 				display: flex;
 				align-items: flex-end;
 				overflow: hidden;
       }
+			@media only screen and (max-width: 1200px) {
+				height: 220px;
+				overflow: hidden;
+				margin: 0 -20px;
+				width: calc(100% + 40px);
+			}
       @media only screen and (max-width: 768px) {
         width: calc(100% + 20px);
 				overflow-x: scroll;
@@ -246,21 +272,10 @@
 				width: 100%;
         justify-content: space-between;
       }
-
-			&-inner {
-				@media only screen and (max-width: 1200px) {
-					height: 220px;
-					overflow: hidden;
-					margin: 0 -20px;
-					width: calc(100% + 40px);
-				}
-			}
 		}
 
 		&__card {
 			pointer-events: all;
-      animation-duration: 0.5s;
-      animation-timing-function: ease-out;
 			@media only screen and (min-width: 769px) {
 				margin-top: 20px;
 				margin-right: 20px;
@@ -268,30 +283,13 @@
 			@media only screen and (max-width: 768px) {
 				margin-right: 10px;
 			}
-			&:nth-child(1) {
-				animation-name: card-show;
-				animation-duration: 0.5s;
-			}
-			&:nth-child(2) {
-				animation-name: card-show;
-				animation-duration: 1s;
-			}
-			&:nth-child(3) {
-				animation-name: card-show;
-				animation-duration: 1.5s;
-			}
-			&:nth-child(4) {
-				animation-name: card-show;
-				animation-duration: 2s;
-        margin-right: 0;
-			}
-
-			.cards-show-up & {
-				animation-name: card-show;
+			&:last-child {
+				margin-right: 0;
 			}
 		}
 
 		&__social-icons {
+			transition: opacity .5s;
       @media only screen and (min-width: 769px) {
         display: flex;
       }

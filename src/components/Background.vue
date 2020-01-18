@@ -6,7 +6,7 @@
 
 <template>
 	<div class="background">
-		<div id="plane" class="background__plane background__plane_show background__plane_move"></div>
+		<div id="plane" class="background__plane plane-show plane-move"></div>
 		<div class="background__clouds background__clouds_0"></div>
 		<div id="clouds_1" class="background__clouds background__clouds_1"></div>
 		<div id="clouds_0" class="background__clouds background__clouds_2"></div>
@@ -112,10 +112,6 @@
 				background-position: bottom;
 				background-repeat: repeat-x;
 				background-size: 100vw $clouds-height;
-				animation-name: move-clouds-left;
-				animation-iteration-count: infinite;
-				animation-timing-function: linear;
-				animation-duration: 20s;
 				@media only screen and (max-width: 768px) {
 					width: 400vw;
 					background-size: 200vw $clouds-height;

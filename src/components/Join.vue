@@ -12,9 +12,6 @@ export default {
     };
   },
   methods: {
-    openModal() {
-      this.showModal = true;
-    },
     closeModal() {
       if (this.showModal) {
         this.showModal = false;
@@ -26,12 +23,12 @@ export default {
 
 <template>
   <div id="join" class="join">
-    <Container id="join-container" class="join__container">
+    <Container id="join-container" class="join__container" v-click-outside="closeModal">
       <img src="../../src/assets/img/background/phone-2x.png" class="join__img" />
       <div class="join__content">
         <h2 class="join__title">Join Us</h2>
         <p class="join__text">{{ text }}</p>
-        <Button v-click-outside="closeModal" @click="openModal" text="I'm In, Let's Go!" class="join__button" />
+        <Button @click="showModal = true" text="I'm In, Let's Go!" class="join__button" />
       </div>
     </Container>
     <transition name="fade">
