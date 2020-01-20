@@ -33,10 +33,10 @@
 			background-image: url('../../src/assets/img/background/plane.png');
 			@media only screen and (min-width: 769px) {
 				width: 80%;
-				height: 100%;
+				height: 102%;
 				max-width: 1440px;
 				min-height: 640px;
-				left: 50%;
+				left: 48%;
 				transform: translateX(-50%);
 			}
 			@media only screen and (max-width: 768px) {

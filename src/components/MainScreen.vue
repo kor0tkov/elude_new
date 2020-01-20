@@ -74,8 +74,9 @@
             moveBottom() {
                 document.getElementsByTagName('html')[0].scrollTop = 1;
             },
-            handleScroll: function (vt, el) {
+            handleScroll: function () {
                 const app = document.getElementById('app');
+								const card = document.getElementsByClassName('main-screen__card');
                 const plane = document.getElementById('plane');
                 const header = document.getElementById('header');
                 const title = document.getElementById('title');
@@ -85,49 +86,42 @@
                 const arrow = document.getElementById('arrow');
 
                 if (window.scrollY === 0) {
-                    app.classList.remove('second-screen');
-                    if (el)
-                        el.classList.add("cards-show-up");
-                    header.classList.add("header-show");
-                    if (title)
-                        title.classList.add("title-show");
-                    plane.classList.add("plane-transform");
-                    clouds_0.classList.add("clouds-hide");
-                    clouds_1.classList.add("clouds-transform-up");
-                    join.classList.add("join-hide");
+									app.classList.remove('second-screen');
+									card.classList.add("cards-show-up");
+									header.classList.add("header-show");
+									title.classList.add("title-show");
+									plane.classList.add("plane-transform");
+									clouds_0.classList.add("clouds-hide");
+									clouds_1.classList.add("clouds-transform-up");
+									join.classList.add("join-hide");
 
-                    if (el)
-                        el.classList.remove("cards-hide");
-                    plane.classList.remove("plane-hide");
-                    header.classList.remove("header-hide");
-                    if (title)
-                        title.classList.remove("title-hide");
-                    clouds_0.classList.remove("clouds-hide");
-                    clouds_1.classList.remove("clouds-transform-down");
-                    arrow.classList.remove("arrow-hide");
-                    join.classList.remove("join-show");
+									card.classList.remove("cards-hide");
+									plane.classList.remove("plane-hide");
+									header.classList.remove("header-hide");
+									title.classList.remove("title-hide");
+									clouds_0.classList.remove("clouds-hide");
+									clouds_1.classList.remove("clouds-transform-down");
+									arrow.classList.remove("arrow-hide");
+									join.classList.remove("join-show");
                 }
                 if (window.scrollY >= 1) {
-                    app.classList.add('second-screen');
-                    if (el)
-                        el.classList.add("cards-hide");
-                    header.classList.add("header-hide");
-                    if (title)
-                        title.classList.add("title-hide");
-                    plane.classList.add("plane-hide");
-                    clouds_0.classList.add("clouds-hide");
-                    clouds_1.classList.add("clouds-transform-down");
-                    arrow.classList.add("arrow-hide");
-                    join.classList.add("join-show");
-                    el.classList.remove("cards-show-up");
-                    if (el)
-                        header.classList.remove("header-show");
-                    if (title)
-                        title.classList.remove("title-show");
-                    plane.classList.remove("plane-transform");
-                    clouds_0.classList.remove("clouds-hide");
-                    clouds_1.classList.remove("clouds-transform-up");
-                    join.classList.remove("join-hide");
+									app.classList.add('second-screen');
+									card.classList.add("cards-hide");
+									header.classList.add("header-hide");
+									title.classList.add("title-hide");
+									plane.classList.add("plane-hide");
+									clouds_0.classList.add("clouds-hide");
+									clouds_1.classList.add("clouds-transform-down");
+									arrow.classList.add("arrow-hide");
+									join.classList.add("join-show");
+
+									card.classList.remove("cards-show-up");
+									header.classList.remove("header-show");
+									title.classList.remove("title-show");
+									plane.classList.remove("plane-transform");
+									clouds_0.classList.remove("clouds-hide");
+									clouds_1.classList.remove("clouds-transform-up");
+									join.classList.remove("join-hide");
                 }
                 return window.scrollY > 100;
             }

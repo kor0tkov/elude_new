@@ -121,9 +121,10 @@
 
 .plane-transform {
   animation-name: plane-show, plane-move;
-  animation-duration: 1.5s, 7s;
-  animation-delay: 0s, 1.4s;
+  animation-duration: 2s, 5s;
+  animation-delay: 0s, 2s;
   animation-iteration-count: 1, infinite;
+  animation-timing-function: ease-out, ease-in-out;
   @keyframes plane-show {
     from {
       transform: translateX(-100%) translateY(100%);
@@ -138,7 +139,7 @@
         background-position: center;
       }
       50% {
-        transform: translateY(-4%) translateX(-48%);
+        transform: translateX(-44%) translateY(-60px);
       }
       to {
         background-position: center;

@@ -54,9 +54,9 @@ export default {
     height: 100%;
     animation-name: join-show;
     animation-duration: 3s;
-    //animation-delay: 2s;
+    animation-delay: .7s;
     animation-timing-function: ease-out;
-    opacity: 1;
+    animation-fill-mode: forwards;
     @keyframes join-show {
       from {
         opacity: 0;
