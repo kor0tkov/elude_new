@@ -1,5 +1,6 @@
 <script>
     import Index from "./views/index";
+    import config from "../config";
 
     export default {
         name: 'app',
@@ -45,11 +46,10 @@
             }
         },
         async mounted() {
-            const fileName = 'lpData';
-            await this.getData(`/data/${fileName}.csv`)
+            await this.getData(`/data/lpData.csv`)
                 .then(async result => {
                     await this.CSVtoJSON(result);
-                    const name = this.$route.params.city;
+                    const name = config.city;
                     if (name) this.results = this.filterByCity(name);
                 });
         }
