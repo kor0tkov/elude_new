@@ -58,12 +58,19 @@
   animation-duration: 0.5s;
   animation-timing-function: ease-out;
 }
-
+@keyframes card-show {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+  }
+}
 .main-screen__section {
   .cards-show-up {
     pointer-events: all;
     animation-name: card-show;
-    animation-duration: 0.5s;
     animation-timing-function: ease-out;
     @media only screen and (min-width: 769px) {
       margin-top: 20px;
@@ -72,15 +79,7 @@
     @media only screen and (max-width: 768px) {
       margin-right: 10px;
     }
-    @keyframes card-show {
-      from {
-        opacity: 0;
-        transform: translateY(-100%);
-      }
-      to {
-        opacity: 1;
-      }
-    }
+
     &:nth-child(1) {
       animation-duration: 0.5s;
     }

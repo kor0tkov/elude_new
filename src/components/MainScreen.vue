@@ -1,138 +1,138 @@
 <script>
-	import Container from "@/components/base/Container";
-	import Background from "@/components/Background";
-	import Header from "@/components/Header";
-	import Card from "@/components/Card";
-	import SocialIcons from "@/components/SocialIcons";
-	import Button from "@/components/base/Button";
-	import moment from "moment";
+    import Container from "@/components/base/Container";
+    import Background from "@/components/Background";
+    import Header from "@/components/Header";
+    import Card from "@/components/Card";
+    import SocialIcons from "@/components/SocialIcons";
+    import Button from "@/components/base/Button";
+    import moment from "moment";
 
-	export default {
-		name: "mainScreen",
-		components: {
-			Button,
-			SocialIcons,
-			Card,
-			Header,
-			Background,
-			Container,
-		},
-		props: {
-			routes: Array
-		},
-		data() {
-			return {
-				cards: [
-					{id: 1, date: '24 Sep - 28 Sep', city: 'Paris', cost: '$569'},
-					{id: 2, date: '28 Sep - 2 Oct', city: 'New York', cost: '$129'},
-					{id: 3, date: '4 Oct - 12 Oct', city: 'Rome', cost: '$639'},
-					{id: 4, date: '21 Sep - 25 Sep', city: 'Rio de Janeiro', cost: '$820'},
-				],
-				scrollEventFunc: null
-			};
-		},
-		computed: {
-			cityName() {
-				if (this.routes.length && this.routes.length > 0)
-					return this.routes[0].LP_city;
-				else return null;
-			},
-			quickRoutes() {
-				const parseDate = (date) => moment(new Date(date)).format("D MMM");
-				if (this.routes && this.routes.length > 0) {
-					const randomArr = this.arrayRandElements(this.routes, 4);
-					return randomArr.map(el => {
-						return {
-							date: `${parseDate(el.outbound_departure_dt)} - ${parseDate(el.inbound_departure_dt)}`,
-							price: Number(el.local_price).toFixed(0),
-							link: el.Landing_Page_Link,
-							city: el.destination_city,
-						}
-					});
-				} else return [];
-			}
-		},
-		methods: {
-			arrayRandElements(arr, count) {
-				const countArr = Array(count).fill(null).map((u, i) => i);
-				let usedIdx = [];
-				return countArr.map(() => {
-					const randomIdx = () => {
-						let rand = Math.floor(Math.random() * (arr.length - 1));
-						if (usedIdx.includes(rand)) {
-							return randomIdx();
-						}
-						usedIdx.push(rand);
-						return rand
-					};
-					return arr[randomIdx()]
-				});
-			},
-			shuffleArray(arr) {
-				arr.sort(() => Math.random() - 0.5)
-			},
-			moveBottom() {
-				document.getElementsByTagName('html')[0].scrollTop = 1;
-			},
-			handleScroll: function (vt, el) {
-				const app = document.getElementById('app');
-				const plane = document.getElementById('plane');
-				const header = document.getElementById('header');
-				const title = document.getElementById('title');
-				const join = document.getElementById('join-container');
-				const clouds_0 = document.getElementById('clouds_0');
-				const clouds_1 = document.getElementById('clouds_1');
-				const arrow = document.getElementById('arrow');
+    export default {
+        name: "mainScreen",
+        components: {
+            Button,
+            SocialIcons,
+            Card,
+            Header,
+            Background,
+            Container,
+        },
+        props: {
+            routes: Array
+        },
+        data() {
+            return {
+                cards: [
+                    {id: 1, date: '24 Sep - 28 Sep', city: 'Paris', cost: '$569'},
+                    {id: 2, date: '28 Sep - 2 Oct', city: 'New York', cost: '$129'},
+                    {id: 3, date: '4 Oct - 12 Oct', city: 'Rome', cost: '$639'},
+                    {id: 4, date: '21 Sep - 25 Sep', city: 'Rio de Janeiro', cost: '$820'},
+                ],
+                scrollEventFunc: null
+            };
+        },
+        computed: {
+            cityName() {
+                if (this.routes.length && this.routes.length > 0)
+                    return this.routes[0].LP_city;
+                else return null;
+            },
+            quickRoutes() {
+                const parseDate = (date) => moment(new Date(date)).format("D MMM");
+                if (this.routes && this.routes.length > 0) {
+                    const randomArr = this.arrayRandElements(this.routes, 4);
+                    return randomArr.map(el => {
+                        return {
+                            date: `${parseDate(el.outbound_departure_dt)} - ${parseDate(el.inbound_departure_dt)}`,
+                            price: Number(el.local_price).toFixed(0),
+                            link: el.Landing_Page_Link,
+                            city: el.destination_city,
+                        }
+                    });
+                } else return [];
+            }
+        },
+        methods: {
+            arrayRandElements(arr, count) {
+                const countArr = Array(count).fill(null).map((u, i) => i);
+                let usedIdx = [];
+                return countArr.map(() => {
+                    const randomIdx = () => {
+                        let rand = Math.floor(Math.random() * (arr.length - 1));
+                        if (usedIdx.includes(rand)) {
+                            return randomIdx();
+                        }
+                        usedIdx.push(rand);
+                        return rand
+                    };
+                    return arr[randomIdx()]
+                });
+            },
+            shuffleArray(arr) {
+                arr.sort(() => Math.random() - 0.5)
+            },
+            moveBottom() {
+                document.getElementsByTagName('html')[0].scrollTop = 1;
+            },
+            handleScroll: function (vt, el) {
+                const app = document.getElementById('app');
+                const plane = document.getElementById('plane');
+                const header = document.getElementById('header');
+                const title = document.getElementById('title');
+                const join = document.getElementById('join-container');
+                const clouds_0 = document.getElementById('clouds_0');
+                const clouds_1 = document.getElementById('clouds_1');
+                const arrow = document.getElementById('arrow');
 
-				if (window.scrollY === 0) {
-					app.classList.remove('second-screen');
-					if (el)
-						el.classList.add("cards-show-up");
-					header.classList.add("header-show");
-					if (title)
-						title.classList.add("title-show");
-					plane.classList.add("plane-transform");
-					clouds_0.classList.add("clouds-hide");
-					clouds_1.classList.add("clouds-transform-up");
-					join.classList.add("join-hide");
+                if (window.scrollY === 0) {
+                    app.classList.remove('second-screen');
+                    if (el)
+                        el.classList.add("cards-show-up");
+                    header.classList.add("header-show");
+                    if (title)
+                        title.classList.add("title-show");
+                    plane.classList.add("plane-transform");
+                    clouds_0.classList.add("clouds-hide");
+                    clouds_1.classList.add("clouds-transform-up");
+                    join.classList.add("join-hide");
 
-					if (el)
-						el.classList.remove("cards-hide");
-					plane.classList.remove("plane-hide");
-					header.classList.remove("header-hide");
-					if (title)
-						title.classList.remove("title-hide");
-					clouds_0.classList.remove("clouds-hide");
-					clouds_1.classList.remove("clouds-transform-down");
-					arrow.classList.remove("arrow-hide");
-					join.classList.remove("join-show");
-				}
-				if (window.scrollY >= 1) {
-					app.classList.add('second-screen');
-					if (el)
-						el.classList.add("cards-hide");
-					header.classList.add("header-hide");
-					if (title)
-						title.classList.add("title-hide");
-					plane.classList.add("plane-hide");
-					clouds_0.classList.add("clouds-hide");
-					clouds_1.classList.add("clouds-transform-down");
-					arrow.classList.add("arrow-hide");
-					join.classList.add("join-show");
-					el.classList.remove("cards-show-up");
-					if (el)
-						header.classList.remove("header-show");
-					if (title)
-						title.classList.remove("title-show");
-					plane.classList.remove("plane-transform");
-					clouds_0.classList.remove("clouds-hide");
-					clouds_1.classList.remove("clouds-transform-up");
-					join.classList.remove("join-hide");
-				}
-				return window.scrollY > 100;
-			}
-		},
-	};
+                    if (el)
+                        el.classList.remove("cards-hide");
+                    plane.classList.remove("plane-hide");
+                    header.classList.remove("header-hide");
+                    if (title)
+                        title.classList.remove("title-hide");
+                    clouds_0.classList.remove("clouds-hide");
+                    clouds_1.classList.remove("clouds-transform-down");
+                    arrow.classList.remove("arrow-hide");
+                    join.classList.remove("join-show");
+                }
+                if (window.scrollY >= 1) {
+                    app.classList.add('second-screen');
+                    if (el)
+                        el.classList.add("cards-hide");
+                    header.classList.add("header-hide");
+                    if (title)
+                        title.classList.add("title-hide");
+                    plane.classList.add("plane-hide");
+                    clouds_0.classList.add("clouds-hide");
+                    clouds_1.classList.add("clouds-transform-down");
+                    arrow.classList.add("arrow-hide");
+                    join.classList.add("join-show");
+                    el.classList.remove("cards-show-up");
+                    if (el)
+                        header.classList.remove("header-show");
+                    if (title)
+                        title.classList.remove("title-show");
+                    plane.classList.remove("plane-transform");
+                    clouds_0.classList.remove("clouds-hide");
+                    clouds_1.classList.remove("clouds-transform-up");
+                    join.classList.remove("join-hide");
+                }
+                return window.scrollY > 100;
+            }
+        },
+    };
 </script>
 
 <template>
@@ -171,6 +171,7 @@
 	.main-screen {
 		height: calc(100vh + 1px);
 		width: 100%;
+
 		&__container {
 			top: 0;
 			transition: 0.5s;
@@ -242,6 +243,7 @@
 				overflow: hidden;
 			}
 		}
+
 		&__cards {
 			display: flex;
 			@media only screen and (min-width: 768px) {
@@ -280,26 +282,26 @@
 			@media only screen and (max-width: 768px) {
 				margin-right: 10px;
 			}
+
 			&:nth-child(1) {
 				animation-name: card-show;
 				animation-duration: 0.5s;
 			}
+
 			&:nth-child(2) {
 				animation-name: card-show;
 				animation-duration: 1s;
 			}
+
 			&:nth-child(3) {
 				animation-name: card-show;
 				animation-duration: 1.5s;
 			}
+
 			&:nth-child(4) {
 				animation-name: card-show;
 				animation-duration: 2s;
 				margin-right: 0;
-			}
-
-			.cards-show-up & {
-				animation-name: card-show;
 			}
 		}
 
@@ -356,5 +358,6 @@
 			}
 		}
 	}
+
 	@import "/../assets/scss/resourses/animation.scss";
 </style>

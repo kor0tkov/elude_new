@@ -61,6 +61,11 @@ export default {
     @media only screen and (max-width: 768px) {
       display: none;
     }
+
+    .second-screen & {
+      opacity: 0;
+      transition: .25s;
+    }
   }
   &__social-icons {
     @media only screen and (min-width: 769px) {
