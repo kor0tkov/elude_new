@@ -6,7 +6,7 @@
 
 <template>
 	<div class="background">
-		<div id="plane" class="background__plane plane-show plane-move"></div>
+		<div id="plane" class="background__plane plane-transform"></div>
 		<div class="background__clouds background__clouds_0"></div>
 		<div id="clouds_1" class="background__clouds background__clouds_1"></div>
 		<div id="clouds_0" class="background__clouds background__clouds_2"></div>

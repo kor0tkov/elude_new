@@ -1,11 +1,7 @@
-.header-hide {
-  opacity: 0;
-  transition: .5s;
-}
 
-.header-show {
-  opacity: 1;
-  transition: .5s;
+// header, button, social, arrow hide
+.opacity-hide {
+  opacity: 0;
 }
 
 .title-hide {
@@ -14,10 +10,11 @@
   transition: .7s;
 }
 
+
+// появление заголовка при смене экранов
 .title-show {
   animation-name: title-show;
-  animation-duration: 1.5s;
-  animation-iteration-count: 1;
+  animation-duration: 2s;
   animation-direction: alternate;
   animation-timing-function: ease;
   @media only screen and (min-width: 769px) {
@@ -54,55 +51,36 @@
   transition: .7s;
   opacity: 0;
   z-index: -1;
-  animation-name: cards-hide;
-  animation-duration: 0.5s;
+}
+
+// появление карточек при смене экранов
+.cards-show-up {
+  pointer-events: all;
+  animation-name: cards-show-up;
   animation-timing-function: ease-out;
-}
-@keyframes card-show {
-  from {
-    opacity: 0;
-    transform: translateY(-100%);
-  }
-  to {
-    opacity: 1;
-  }
-}
-.main-screen__section {
-  .cards-show-up {
-    pointer-events: all;
-    animation-name: card-show;
-    animation-timing-function: ease-out;
-    @media only screen and (min-width: 769px) {
-      margin-top: 20px;
-      margin-right: 20px;
+  animation-duration: 2s;
+  @keyframes cards-show-up {
+    from {
+      opacity: 0;
+      transform: translateY(-100%);
     }
-    @media only screen and (max-width: 768px) {
-      margin-right: 10px;
-    }
-
-    &:nth-child(1) {
-      animation-duration: 0.5s;
-    }
-    &:nth-child(2) {
-      animation-duration: 1s;
-    }
-    &:nth-child(3) {
-      animation-duration: 1.5s;
-    }
-    &:nth-child(4) {
-      animation-duration: 2s;
-    }
-    &:last-child {
-      margin-right: 0;
+    to {
+      opacity: 1;
     }
   }
+  &:nth-child(1) {
+    animation-duration: 0.5s;
+  }
+  &:nth-child(2) {
+    animation-duration: 1s;
+  }
+  &:nth-child(3) {
+    animation-duration: 1.5s;
+  }
+  &:nth-child(4) {
+    animation-duration: 2s;
+  }
 }
-
-.arrow-hide {
-  opacity: 0;
-}
-
-// clouds
 
 .plane-hide {
   animation-name: plane-hide;
@@ -119,8 +97,9 @@
   }
 }
 
+// Появление и движение самолета
 .plane-transform {
-  animation-name: plane-show, plane-move;
+  animation-name: plane-show, plane-transform;
   animation-duration: 2s, 5s;
   animation-delay: 0s, 2s;
   animation-iteration-count: 1, infinite;
@@ -134,7 +113,7 @@
     }
   }
   @media only screen and (min-width: 769px) {
-    @keyframes plane-move {
+    @keyframes plane-transform {
       from {
         background-position: center;
       }
@@ -147,7 +126,7 @@
     }
   }
   @media only screen and (max-width: 768px) {
-    @keyframes plane-move {
+    @keyframes plane-transform {
       from {
         background-position: center;
       }
@@ -160,7 +139,7 @@
     }
   }
   @media only screen and (width: 768px) {
-    @keyframes plane-move {
+    @keyframes plane-transform {
       from {
         background-position: center;
       }
@@ -202,6 +181,7 @@
   }
 }
 
+// движение облаков справа налево
 .background__clouds {
   &_2 {
     animation-name: move-clouds-left;
