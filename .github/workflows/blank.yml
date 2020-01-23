@@ -29,9 +29,14 @@ jobs:
           git commit -m 'deploy'
           git push origin HEAD:master
 
+      - name: Install SSH Client
+        uses: webfactory/ssh-agent@v0.2.0
+        with:
+          ssh-private-key: ${{ secrets.DEPLOY_KEY }}
+
       - name: deploy
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SSH: true
           BRANCH: gh-pages
           FOLDER: dist
