@@ -1,6 +1,6 @@
 <script>
     import Index from "./views/index";
-    import config from "../config";
+    import {getCityFromConfig} from "../public/plugins/city";
 
     export default {
         name: 'app',
@@ -46,11 +46,11 @@
             }
         },
         async mounted() {
+            const cityName = getCityFromConfig();
             await this.getData(`/data/lpData.csv`)
                 .then(async result => {
                     await this.CSVtoJSON(result);
-                    const name = config.city;
-                    if (name) this.results = this.filterByCity(name);
+                    if (cityName) this.results = this.filterByCity(cityName);
                     else return this.results;
                 });
         }
