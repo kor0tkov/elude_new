@@ -26,4 +26,4 @@ jobs:
           cd ../
           git add -A
           git commit -m 'deploy'
-          git push
+          git push origin HEAD:master
