@@ -9,8 +9,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Run a one-line script
+    - name: npm update
       run: npm update
-    - name: Run a multi-line script
-      run: |
-        npm run build
+    - name: npm run build
+      run: npm run build
