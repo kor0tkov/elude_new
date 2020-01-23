@@ -6,7 +6,7 @@
 
 <template>
 	<div class="background">
-		<div id="plane" class="background__plane plane-show plane-move"></div>
+		<div id="plane" class="background__plane plane-transform"></div>
 		<div class="background__clouds background__clouds_0"></div>
 		<div id="clouds_1" class="background__clouds background__clouds_1"></div>
 		<div id="clouds_0" class="background__clouds background__clouds_2"></div>
@@ -33,10 +33,10 @@
 			background-image: url('../../src/assets/img/background/plane.png');
 			@media only screen and (min-width: 769px) {
 				width: 80%;
-				height: 100%;
+				height: 102%;
 				max-width: 1440px;
 				min-height: 640px;
-				left: 50%;
+				left: 48%;
 				transform: translateX(-50%);
 			}
 			@media only screen and (max-width: 768px) {
