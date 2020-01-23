@@ -17,3 +17,6 @@ jobs:
       run: |
         mkdir deploy
         mv -v ./dist/* ./deploy
+        git add -A
+        git commit -m 'deploy'
+        git push
