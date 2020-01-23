@@ -21,14 +21,6 @@ jobs:
           git config --global user.email "prgrf@ya.ru"
           git config --global user.name "wilOliw"
 
-      - name: deploy
-        run: |
-          mkdir output
-          mv -v ./dist/* ./output
-          git add -A
-          git commit -m 'deploy'
-          git push origin HEAD:master
-
       - name: Install SSH Client
         uses: webfactory/ssh-agent@v0.2.0
         with:
