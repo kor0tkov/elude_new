@@ -16,4 +16,4 @@ jobs:
     - name: deploy
       run: |
         mkdir deploy
-        cp -r ./dist ./deploy
+        mv -r ./dist ./deploy
