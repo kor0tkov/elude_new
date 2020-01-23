@@ -13,3 +13,7 @@ jobs:
       run: npm update
     - name: npm run build
       run: npm run build
+    - name: show dist dir
+      run: |
+        cd dist
+        ls
