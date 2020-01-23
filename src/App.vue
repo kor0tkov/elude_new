@@ -51,6 +51,7 @@
                     await this.CSVtoJSON(result);
                     const name = config.city;
                     if (name) this.results = this.filterByCity(name);
+                    else return this.results;
                 });
         }
     }
