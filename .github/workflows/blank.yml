@@ -15,6 +15,5 @@ jobs:
       run: npm run build
     - name: deploy
       run: |
-        rm -r ./deploy
         mkdir deploy
         cp -r ./dist ./deploy
