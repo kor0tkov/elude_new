@@ -15,18 +15,6 @@ jobs:
       - name: npm run build
         run: npm run build
 
-      - name: auth
-          run: |
-            git config --global user.email "prgrf@ya.ru"
-            git config --global user.name "wilOliw"
-      - name: deploy
-        run: |
-          mkdir output
-          mv -v ./dist/* ./output
-          git add -A
-          git commit -m 'deploy'
-          git push origin HEAD:master
-
       - name: Deploy
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
