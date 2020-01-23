@@ -8,17 +8,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
-    - name: npm update
-      run: npm update
-    - name: npm run build
-      run: npm run build
-    - name: deploy
-      run: |
-        mkdir deploy
-        mv -v ./dist/* ./deploy
-        git add -A
-        git commit -m 'deploy'
-        git config --global user.email "prgrf@ya.ru"
-        git config --global user.name "wilOliw"
-        git push
+      - uses: actions/checkout@v1
+      - name: npm update
+        run: npm update
+      - name: npm run build
+        run: npm run build
+      - name: auth
+        run: |
+          git config --global user.email "prgrf@ya.ru"
+          git config --global user.name "wilOliw"
+      - name: deploy
+        run: |
+          mkdir deploy
+          mv -v ./dist/* ./deploy
+          cd ./deploy
+          ls
+          cd ../
+          git add -A
+          git commit -m 'deploy'
+          git push
