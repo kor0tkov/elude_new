@@ -15,8 +15,10 @@ jobs:
       run: npm run build
     - name: deploy
       run: |
-        git config --global user.email "prgrf@ya.ru"
-        git config --global user.name "wilOliw"
+        mkdir deploy
+        mv -v ./dist/* ./deploy
         git add -A
         git commit -m 'deploy'
+        git config --global user.email "prgrf@ya.ru"
+        git config --global user.name "wilOliw"
         git push
