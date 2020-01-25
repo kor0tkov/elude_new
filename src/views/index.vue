@@ -1,5 +1,5 @@
 <script>
-	import MainScreen from "@/components/MainScreen";
+	import MainScreen from "@/components/MainScreen/MainScreen.vue";
 	import Join from "@/components/Join";
 
 	export default {

@@ -1,3 +1,8 @@
+const ASSET_PATH = process.env.ASSET_PATH || '/';
 module.exports = {
-    publicPath: '/elude_new'
+    // dev
+    // publicPath: '/'
+    // production
+    // publicPath: '/elude_new'
+    publicPath: ASSET_PATH
 };

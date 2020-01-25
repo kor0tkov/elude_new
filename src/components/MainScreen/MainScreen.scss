@@ -1,0 +1,202 @@
+@import "@/assets/scss/resourses/animation";
+.main-screen {
+  height: calc(100vh + 1px);
+  width: 100%;
+
+  &__container {
+    top: 0;
+    transition: 0.5s;
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    @media only screen and (min-width: 769px) {
+      padding-bottom: 90px;
+    }
+    @media only screen and (max-width: 768px) {
+      padding-bottom: 50px;
+    }
+  }
+
+  &__header {
+    position: relative;
+    z-index: 5;
+    transition: .5s;
+  }
+
+  &__title {
+    position: absolute;
+    z-index: 2;
+    font-weight: 800;
+    opacity: 0.5;
+    color: #918b8c;
+    letter-spacing: 1px;
+    transition: .5s;
+    @media only screen and (min-width: 768px) {
+      max-width: 1000px;
+      font-size: 11.5vw;
+      line-height: 166px;
+      top: 14vh;
+      transform: translateX(-10px);
+    }
+    @media only screen and (max-width: 767px) {
+      max-width: 360px;
+      font-size: 100px;
+      line-height: 114px;
+      top: 8vh;
+    }
+
+    .second-screen & {
+      opacity: 0;
+    }
+  }
+
+  &__section {
+    position: relative;
+    z-index: 5;
+    @media only screen and (min-width: 769px) {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      z-index: 11;
+    }
+  }
+
+  &__cards-inner {
+    @media only screen and (min-width: 768px) {
+      height: 350px;
+      display: flex;
+      align-items: flex-end;
+    }
+    @media only screen and (max-width: 768px) {
+      width: calc(100% + 20px);
+      overflow-x: scroll;
+      -webkit-overflow-scrolling: touch;
+    }
+    @media only screen and (width: 768px) {
+      height: 350px;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .second-screen & {
+      opacity: 0;
+      transition: .25s;
+    }
+  }
+
+  &__cards {
+    display: flex;
+    @media only screen and (min-width: 768px) {
+      height: 240px;
+    }
+    @media only screen and (max-width: 769px) {
+      height: 220px;
+      overflow-x: scroll;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+    }
+    @media only screen and (width: 768px) {
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
+
+  &__card {
+    @media only screen and (min-width: 769px) {
+      margin-top: 20px;
+      margin-right: 20px;
+    }
+    @media only screen and (max-width: 768px) {
+      margin-right: 10px;
+    }
+
+    .cards-show-up & {
+      pointer-events: all;
+      animation-name: cards-show-up;
+      animation-timing-function: ease-out;
+      animation-duration: 0.5s;
+      @keyframes cards-show-up {
+        from {
+          opacity: 0;
+          transform: translateY(100%);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    }
+
+    &:nth-child(1) {
+      animation-duration: 0.5s;
+    }
+    &:nth-child(2) {
+      animation-duration: 1s;
+    }
+    &:nth-child(3) {
+      animation-duration: 1.5s;
+    }
+    &:nth-child(4) {
+      animation-duration: 2s;
+      margin-right: 0;
+    }
+  }
+
+  &__social-icons {
+    transition: .5s;
+    @media only screen and (min-width: 769px) {
+      display: flex;
+    }
+    @media only screen and (max-width: 768px) {
+      display: none;
+    }
+  }
+
+  &__button {
+    transition: .5s;
+    @media only screen and (min-width: 769px) {
+      display: none;
+    }
+    @media only screen and (max-width: 768px) {
+      position: relative;
+      z-index: 5;
+      width: 100%;
+      height: 50px;
+      font-size: 16px;
+      margin-top: 20px;
+    }
+    @media only screen and (width: 768px) {
+      width: 30%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  &__arrow {
+    position: absolute;
+    z-index: 5;
+    width: 18px;
+    height: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+    transition: 0.15s;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('../../assets/img/buttons/arrow.svg');
+    @media only screen and (min-width: 769px) {
+      bottom: 36px;
+    }
+    @media only screen and (max-width: 768px) {
+      bottom: 20px;
+    }
+
+    &:hover {
+      background-image: url('../../assets/img/buttons/arrow-hover.svg');
+    }
+  }
+}

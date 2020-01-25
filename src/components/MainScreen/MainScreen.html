@@ -1,0 +1,41 @@
+<div class="main-screen">
+	<Background class="main-screen__background"/>
+	<Container class="main-screen__container">
+		<Header
+			id="header"
+			@shuffle="shuffleArray(routes)"
+			:class="{ 'opacity-hide': !isFirstScreen }"
+			class="main-screen__header"
+		/>
+		<div id="title" v-if="cityName" class="main-screen__title title-show">From {{cityName}}</div>
+		<div class="main-screen__section">
+			<div class="main-screen__cards-inner">
+				<div v-if="quickRoutes && quickRoutes.length > 0" class="main-screen__cards cards-show-up">
+					<Card
+						v-for="(route, idx) in quickRoutes"
+						:key="idx"
+						:date="route.date"
+						:city="route.city"
+						:cost="route.price"
+						:link="route.link"
+						class="main-screen__card"
+					/>
+				</div>
+			</div>
+			<SocialIcons id="social" :class="{ 'opacity-hide': !isFirstScreen }" class="main-screen__social-icons"/>
+			<Button
+				id="button"
+				text="What else ya got?"
+				:class="{ 'opacity-hide': !isFirstScreen }"
+				class="main-screen__button"
+				@click="shuffleArray(routes)"
+			/>
+		</div>
+		<div
+			id="arrow"
+			:class="{ 'opacity-hide': !isFirstScreen }"
+			class="main-screen__arrow"
+			@click="moveBottom()"
+		></div>
+	</Container>
+</div>
