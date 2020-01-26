@@ -85,6 +85,7 @@ export default {
   }
   &__img {
     object-fit: contain;
+    max-width: 400px;
     @media only screen and (min-width: 769px) {
       height: 100%;
       margin-right: 80px;

@@ -22,7 +22,7 @@
     max-width: 1440px;
     margin-left: auto;
     margin-right: auto;
-    padding: 0 150px;
+    padding: 0 20px;
   }
   @media only screen and (max-width: 768px) {
     padding: 0 20px;
