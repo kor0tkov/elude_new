@@ -13,9 +13,7 @@ export default {
   },
   methods: {
     closeModal() {
-      if (this.showModal) {
-        this.showModal = false;
-      }
+      this.showModal = false;
     }
   }
 };
@@ -149,6 +147,7 @@ export default {
     right: 0;
     left: 0;
     bottom: 0;
+    cursor: pointer;
   }
   &__modal {
     border: 1px solid #000;

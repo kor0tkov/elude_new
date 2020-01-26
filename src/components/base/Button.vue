@@ -6,12 +6,16 @@
                 type: String,
                 default: '',
             },
+            disabled: {
+                type: Boolean,
+                default: true
+            }
         },
     };
 </script>
 
 <template>
-	<button class="button" v-on:click.prevent="$emit('click')">{{ text }}</button>
+	<button class="button" @click.prevent="$emit('click')" :disabled="disabled">{{ text }}</button>
 </template>
 
 <style lang="scss">
@@ -25,9 +29,10 @@
 		cursor: pointer;
 		outline: none;
 		transition: 0.15s;
-		
+
 		&:disabled {
 			cursor: not-allowed;
+			opacity: 0.2;
 		}
 
 		&:hover {

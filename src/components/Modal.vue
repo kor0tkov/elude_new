@@ -4,7 +4,7 @@
 
     export default {
         name: "Modal",
-        components: {Button, Input},
+        components: {Button, ModalInput: Input},
         props: {
             title: {
                 type: String,
@@ -15,17 +15,34 @@
                 default: '',
             },
         },
+        computed: {
+            isValidForm() {
+                return !!this.inputs.find(({value}) => value === '' || null);
+            }
+        },
         data() {
             return {
                 isSend: false,
                 inputs: [
-                    {title: 'Your Name', id: 'name', placeholder: 'Paul', value: ''},
-                    {title: 'E-mail', id: 'email', placeholder: 'hello@gmail.com', value: ''},
-                    {title: 'Home City', id: 'city', placeholder: 'San Francisco', value: ''},
+                    {title: 'Your Name', id: 'name', type: 'text', value: ''},
+                    {title: 'E-mail', id: 'email', type: 'text', value: ''},
+                    {title: 'Home City', id: 'city', type: 'text', value: ''},
                 ],
             };
         },
         methods: {
+            /**
+             * @return {boolean}
+             */
+            ValidateEmail(mail) {
+                if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
+                    return true;
+                }
+                alert("You have entered an invalid email address!");
+                const inputEmail = document.getElementById('email');
+                inputEmail.focus();
+                return false;
+            },
             async sendForm() {
                 async function sendMail(url, data) {
                     return await new Promise((resolve, reject) => {
@@ -44,6 +61,15 @@
                     document.getElementById(emptyInputId).focus();
                     return;
                 }
+
+                // проверка правильности email
+                let emailInputValue = this.inputs.find(({id}) => id === 'email').value;
+                const emailValidateStatus = this.ValidateEmail(emailInputValue);
+                if (emailValidateStatus === false) {
+                    return;
+                }
+
+                // подготовка данных
                 const user = {
                     name: this.inputs[0].value,
                     mail: this.inputs[1].value,
@@ -71,18 +97,18 @@
 			<div @click="$emit('close')" class="modal__close"></div>
 			<p class="modal__subtitle">{{ subtitle }}</p>
 			<div class="modal__inputs">
-				<Input
+				<ModalInput
 					v-for="item in inputs"
 					:key="item.title"
-					:title="item.title"
-					:placeholder="item.placeholder"
+					:placeholder="item.title"
 					:id="item.id"
+					:type="item.type"
 					required
 					v-model="item.value"
 					class="modal__input"/>
 			</div>
 			<Button
-				:disabled="isSend"
+				:disabled="isSend || isValidForm"
 				:text="isSend ? 'Ваша заявка успешно отправлена!' : 'Submit'"
 				@click="sendForm()"
 				class="modal__button"
@@ -93,20 +119,22 @@
 
 <style lang="scss">
 	.modal {
-    position: relative;
-    z-index: 7;
-    box-sizing: border-box;
-    background-color: #ffffff;
-    @media only screen and (min-width: 769px) {
-      width: 620px;
-      padding: 30px 50px 50px;
-    }
-    @media only screen and (max-width: 768px) {
-      height: 100%;
-      width: 100%;
-      padding: 30px;
-      overflow: scroll;
-    }
+		position: relative;
+		z-index: 7;
+		box-sizing: border-box;
+		background-color: #ffffff;
+		cursor: default;
+
+		@media only screen and (min-width: 769px) {
+			width: 620px;
+			padding: 30px 50px 50px;
+		}
+		@media only screen and (max-width: 768px) {
+			height: 100%;
+			width: 100%;
+			padding: 30px;
+			overflow: scroll;
+		}
 
 		&__close {
 			position: absolute;
@@ -156,7 +184,7 @@
 
 		&__input {
 			background-color: #ffffff;
-			margin-bottom: 20px;
+			margin-bottom: 30px;
 		}
 
 		&__button {
