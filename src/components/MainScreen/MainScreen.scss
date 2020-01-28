@@ -1,6 +1,7 @@
 @import "@/assets/scss/resourses/animation";
 .main-screen {
   height: calc(100% + 1px);
+  margin-bottom: 1px;
   width: 100%;
   overflow: hidden;
   //padding-bottom: var(--safe-area-inset-bottom);

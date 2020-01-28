@@ -31,7 +31,7 @@
 			background-position: center;
 			background-repeat: no-repeat;
 			background-image: url('../../src/assets/img/background/plane.png');
-			@media only screen and (min-width: 769px) {
+			@media only screen and (min-width: 768px) {
 				width: 80%;
 				height: 102%;
 				max-width: 1440px;
@@ -39,21 +39,18 @@
 				left: 48%;
 				transform: translateX(-50%);
 			}
-			@media only screen and (max-width: 768px) {
+			@media only screen and (max-width: 768px) and (min-width: 500px) {
+				width: 100%;
+				min-height: 310px;
+				top: 18vh;
+				right: 0;
+			}
+			@media only screen and (max-width: 500px) {
 				width: 160%;
 				min-height: 310px;
 				top: 18vh;
 				right: 0;
 				transform: translateX(10px);
-			}
-			@media only screen and (width: 768px) {
-				width: 80%;
-				height: 50%;
-				max-width: 768px;
-				min-height: 640px;
-				top: 12vh;
-				left: 50%;
-				transform: translateX(-50%);
 			}
 		}
 
