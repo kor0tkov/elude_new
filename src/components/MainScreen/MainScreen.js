@@ -75,6 +75,7 @@ export default {
             const clouds_1 = document.getElementById('clouds_1');
             const cardsContainer = document.getElementsByClassName('main-screen__cards')[0];
 
+
             if (window.scrollY === 0) {
                 cardsContainer.classList.add("cards-show-up");
                 if (title) title.classList.add("title-show");
@@ -104,11 +105,25 @@ export default {
                 plane.classList.remove("plane-transform");
                 clouds_1.classList.remove("clouds-transform-up");
                 join.classList.remove("join-hide");
+
             }
-            return window.scrollY > 100;
         }
     },
     mounted() {
-        document.addEventListener('scroll', this.handleScroll)
+        document.addEventListener('scroll', this.handleScroll);
+        // if (document.addEventListener) {
+        //     if ('onwheel' in document) {
+        //         // IE9+, FF17+
+        //         document.addEventListener("wheel", this.handleScroll);
+        //     } else if ('onmousewheel' in document) {
+        //         // устаревший вариант события
+        //         document.addEventListener("mousewheel", this.handleScroll);
+        //     } else {
+        //         // Firefox < 17
+        //         document.addEventListener("MozMousePixelScroll", this.handleScroll);
+        //     }
+        // } else { // IE8-
+        //     document.attachEvent("onmousewheel", this.handleScroll);
+        // }
     }
 };

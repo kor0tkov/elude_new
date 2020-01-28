@@ -45,7 +45,7 @@ export default {
 
 <style lang="scss">
 .join {
-  height: calc(100vh + 1px);
+  height: calc(100% + 1px);
   width: 100%;
   overflow: hidden;
   .join-show {

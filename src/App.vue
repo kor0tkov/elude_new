@@ -64,7 +64,23 @@
 </template>
 
 <style lang="scss">
-	html {
+	:root {
+		/* -------------------------------------------------------------------
+				Assign the default/constant/env values to CSS variables
+		*/
+		--safe-area-inset-bottom: 0px;
+		@supports (bottom: constant(safe-area-inset-bottom)) {
+			--safe-area-inset-bottom: constant(safe-area-inset-bottom, 0);
+		}
+		@supports (bottom: env(safe-area-inset-bottom)) {
+			--safe-area-inset-bottom: env(safe-area-inset-bottom, 0);
+		}
+	}
+
+	html,
+	body {
+		overflow-x: hidden;
+		max-width: 100%;
 	}
 
 	html,

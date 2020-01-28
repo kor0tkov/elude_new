@@ -1,6 +1,7 @@
 <script>
     import Input from "@/components/base/Input";
     import Button from "@/components/base/Button";
+    import {getCityFromConfig} from "../../public/plugins/city";
 
     export default {
         name: "Modal",
@@ -42,6 +43,9 @@
                 const inputEmail = document.getElementById('email');
                 inputEmail.focus();
                 return false;
+            },
+            prepareCityInputValue(cityName) {
+                this.inputs.find(({id}) => id === 'city').value = cityName;
             },
             async sendForm() {
                 async function sendMail(url, data) {
@@ -86,6 +90,11 @@
                 }, 2500);
                 await sendMail('php/mail.php', user)
             },
+        },
+        mounted() {
+            const cityName = getCityFromConfig();
+            if (cityName)
+                this.prepareCityInputValue(cityName);
         }
     };
 </script>

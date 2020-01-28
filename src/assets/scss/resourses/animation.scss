@@ -1,4 +1,3 @@
-
 // header, button, social, arrow hide
 .opacity-hide {
   opacity: 0;
@@ -20,11 +19,9 @@
   @media only screen and (min-width: 1281px) {
     @keyframes title-show {
       from {
-        opacity: 0;
         left: -100%;
       }
       to {
-        opacity: 0.5;
         left: 200px;
       }
     }
@@ -32,12 +29,9 @@
   @media only screen and (max-width: 1280px) {
     @keyframes title-show {
       from {
-        opacity: 0;
-        //left: -100%;
         transform: translateX(-100%);
       }
       to {
-        opacity: 0.5;
         transform: translateX(0);
       }
     }
@@ -45,15 +39,14 @@
   @media only screen and (max-width: 768px) {
     @keyframes title-show {
       from {
-        opacity: 0;
         left: -100%;
       }
       to {
-        opacity: 0.5;
         left: 20px;
       }
     }
   }
+
   .second-screen & {
     animation: none;
     opacity: 0;
@@ -203,6 +196,7 @@
       animation-duration: 10s;
     }
   }
+
   &_3 {
     animation-name: move-clouds-left;
     animation-iteration-count: infinite;

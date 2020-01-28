@@ -77,6 +77,7 @@
     height: 20px;
     padding: 10px 0;
     line-height: 30px;
+    border-radius: 0;
     border-bottom: 1px solid rgba(51, 51, 51, 0.2);
     transition: .25s;
 
