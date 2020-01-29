@@ -40,6 +40,10 @@
 .input {
   position: relative;
   display: block;
+
+  &:last-of-type {
+    margin-bottom: 76px;
+  }
   &__title {
     display: block;
     letter-spacing: 0.2px;
@@ -69,9 +73,8 @@
     font-family: Montserrat, sans-serif;
     width: 100%;
     font-size: 18px;
-    font-weight: 700;
     letter-spacing: 0.2px;
-    color: #333333;
+    color: #111;
     outline: none;
     border: none;
     height: 20px;

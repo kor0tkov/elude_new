@@ -30,15 +30,14 @@ export default {
       </div>
     </Container>
     <transition name="fade">
-      <div v-if="showModal" class="join__modal-wrapper">
         <Modal
           v-click-outside="closeModal"
           @close="closeModal"
           title="Join Us"
+          v-if="showModal"
           subtitle="Keep up-to-date and be amongst the first to get access our platform."
           class="join__modal"
         />
-      </div>
     </transition>
   </div>
 </template>
@@ -150,15 +149,15 @@ export default {
     cursor: pointer;
   }
   &__modal {
-    border: 1px solid #000;
-    border-radius: 5px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    transform: translateY(0);
   }
   .fade-enter-active, .fade-leave-active {
-    transition: opacity .5s;
+    transition: .25s;
   }
   .fade-enter, .fade-leave-to {
     opacity: 0;
+    transform: translateY(-25px);
   }
 }
 </style>

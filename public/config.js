@@ -1,1 +1,1 @@
-export const city = 'los angles';
+export const city = 'New York';

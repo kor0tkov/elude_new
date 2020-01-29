@@ -32,6 +32,10 @@
             };
         },
         methods: {
+            closeModal() {
+                this.isSend = false;
+                this.$emit('close');
+            },
             /**
              * @return {boolean}
              */
@@ -80,14 +84,6 @@
                     city: this.inputs[2].value
                 };
                 this.isSend = true;
-                setTimeout(() => {
-                    this.isSend = false;
-                    this.$emit('close');
-                    this.inputs = this.inputs.map((el) => {
-                        el.value = '';
-                        return el;
-                    });
-                }, 2500);
                 await sendMail('php/mail.php', user)
             },
         },
@@ -100,12 +96,22 @@
 </script>
 
 <template>
-	<div class="modal">
-		<div class="modal__window">
-			<h2 class="modal__title">{{ title }}</h2>
-			<div @click="$emit('close')" class="modal__close"></div>
-			<p class="modal__subtitle">{{ subtitle }}</p>
-			<div class="modal__inputs">
+	<div id="openModal" class="modal">
+		<div class="modal-dialog">
+			<form @submit="sendForm()" v-if="!isSend" id="form" class="modal-content">
+				<div class="modal__title">
+					<span>Join Us</span>
+					<div title="Close" class="close" @click="closeModal()">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+							<path fill="#000" fill-rule="nonzero"
+								d="M10.993 12.03l-8.828 8.83c-.244.247-.195.696.05.942a.621.621 0 0 0 .443.185c.16 0 .438.056.56-.067l8.83-8.834 8.76 8.764c.123.123.33.137.491.137.16 0 .32-.061.443-.185.245-.246.364-.765.12-1.012l-8.758-8.76 8.76-8.765c.245-.247.129-.763-.116-1.01-.245-.246-.691-.296-.936-.05l-8.764 8.768-8.833-8.838c-.245-.246-.762-.126-1.007.12-.244.247-.29.693-.046.94l8.83 8.834z"></path>
+						</svg>
+					</div>
+				</div>
+				<p class="modal__subtitle">
+					Keep up-to-date and be amongst the first to get access
+					to our platform.
+				</p>
 				<ModalInput
 					v-for="item in inputs"
 					:key="item.title"
@@ -115,14 +121,32 @@
 					required
 					v-model="item.value"
 					class="modal__input"/>
-			</div>
-			<Button
-				:disabled="isSend || isValidForm"
-				:text="isSend ? 'Ваша заявка успешно отправлена!' : 'Submit'"
-				@click="sendForm()"
-				class="modal__button"
-			/>
+				<Button
+					:disabled="isSend || isValidForm"
+					:text="isSend ? 'Ваша заявка успешно отправлена!' : 'Submit'"
+					@click="sendForm()"
+					class="modal__button"
+				/>
+			</form>
+			<form class="modal-content join" v-else>
+				<div class="modal__title">
+					<span>Thank You!</span>
+					<div title="Close" class="close" @click="closeModal()">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+							<path fill="#000" fill-rule="nonzero"
+								d="M10.993 12.03l-8.828 8.83c-.244.247-.195.696.05.942a.621.621 0 0 0 .443.185c.16 0 .438.056.56-.067l8.83-8.834 8.76 8.764c.123.123.33.137.491.137.16 0 .32-.061.443-.185.245-.246.364-.765.12-1.012l-8.758-8.76 8.76-8.765c.245-.247.129-.763-.116-1.01-.245-.246-.691-.296-.936-.05l-8.764 8.768-8.833-8.838c-.245-.246-.762-.126-1.007.12-.244.247-.29.693-.046.94l8.83 8.834z"></path>
+						</svg>
+					</div>
+				</div>
+				<p class="join_text">We will definitely inform you when we start the service.</p>
+				<Button
+					text="Close"
+					@click="closeModal()"
+					class="modal__button"
+				/>
+			</form>
 		</div>
+		<div class="modal-layout" @click="closeModal()"></div>
 	</div>
 </template>
 
@@ -131,19 +155,7 @@
 		position: relative;
 		z-index: 7;
 		box-sizing: border-box;
-		background-color: #ffffff;
 		cursor: default;
-
-		@media only screen and (min-width: 769px) {
-			width: 620px;
-			padding: 30px 50px 50px;
-		}
-		@media only screen and (max-width: 768px) {
-			height: 100%;
-			width: 100%;
-			padding: 30px;
-			overflow: scroll;
-		}
 
 		&__close {
 			position: absolute;
@@ -169,21 +181,42 @@
 			}
 		}
 
+		&__content {
+			padding: 30px 50px 50px;
+			box-sizing: border-box;
+			min-width: 620px;
+		}
+
 		&__title {
-			font-size: 60px;
-			font-weight: 700;
-			line-height: 1.33;
-			letter-spacing: 0.2px;
-			color: #191919;
-			margin-bottom: 10px;
+
+			span {
+				letter-spacing: 0.2px;
+				color: #191919;
+				font-size: 60px;
+				line-height: 80px;
+				margin-bottom: 10px;
+				display: flex;
+				font-weight: 700;
+				font-family: Montserrat, sans-serif;
+				justify-content: space-between;
+				width: 100%;
+			}
 		}
 
 		&__subtitle {
 			font-size: 16px;
 			font-weight: 300;
-			line-height: 1.88;
-			color: #706163;
+			line-height: 30px;
+			letter-spacing: 0;
+			color: #191919;
 			margin-bottom: 30px;
+			min-height: 50px;
+
+			@media (max-width: 980px) {
+				width: 100%;
+				margin-bottom: 60px;
+				max-width: 100%;
+			}
 		}
 
 		&__inputs {
@@ -193,18 +226,129 @@
 
 		&__input {
 			background-color: #ffffff;
-			margin-bottom: 30px;
+			margin-bottom: 40px;
 		}
 
 		&__button {
 			width: 100%;
 			font-size: 18px;
-			@media only screen and (min-width: 769px) {
-				height: 70px;
-			}
-			@media only screen and (max-width: 768px) {
-				height: 50px;
-			}
+			margin-top: auto;
+			margin-bottom: 0;
+			padding: 20px;
+			height: 70px;
 		}
 	}
+
+	/* свойства модального окна по умолчанию */
+	.modal {
+		position: fixed; /* фиксированное положение */
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0; /* цвет фона */
+		z-index: 103;
+		max-width: 100%;
+		overflow-y: hidden;
+
+		&-layout {
+			position: absolute;
+			z-index: 102;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			background: rgba(0, 0, 0, 0.5);
+		}
+	}
+
+	/* ширина модального окна и его отступы от экрана */
+	.modal-dialog {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		z-index: 104;
+		margin: auto;
+		display: flex;
+		flex-direction: column;
+		background-color: #fff;
+		padding: 30px 50px 50px;
+		box-sizing: border-box;
+		min-width: 620px;
+
+		@media (max-width: 620px) {
+			transform: translate(0);
+			background-color: #fff;
+			margin: 0;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			box-sizing: border-box;
+			min-width: auto;
+			height: 100%;
+			border: none;
+			padding: 60px 20px 30px;
+		}
+	}
+
+	/* свойства для блока, содержащего контент модального окна */
+	.modal-content {
+		display: flex;
+		flex-direction: column;
+		background-color: #fff;
+		box-sizing: border-box;
+		min-height: 360px;
+		max-width: 100%;
+		height: 100%;
+	}
+
+	/* свойства для заголовка модального окна */
+	.modal-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 15px;
+		border-bottom: 1px solid #eceeef;
+	}
+
+	.modal-title {
+		margin-top: 0;
+		margin-bottom: 0;
+		line-height: 1.5;
+		font-size: 1.25rem;
+		font-weight: 500;
+	}
+
+	/* свойства для кнопки "Закрыть" */
+	.close {
+		position: absolute;
+		top: 50px;
+		right: 50px;
+		opacity: .5;
+		width: 24px;
+		height: 24px;
+		display: flex;
+		@media (max-width: 620px) {
+			top: 20px;
+			right: 20px;
+		}
+	}
+
+	/* свойства для кнопки "Закрыть" при нахождении её в фокусе или наведении */
+	.close:focus, .close:hover {
+		color: #000;
+		text-decoration: none;
+		cursor: pointer;
+		opacity: .75;
+	}
+
+	/* свойства для блока, содержащего основное содержимое окна */
+	.modal-body {
+		position: relative;
+		flex: 1 1 auto;
+		padding: 15px;
+		overflow: auto;
+	}
+
 </style>

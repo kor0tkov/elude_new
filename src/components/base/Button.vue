@@ -29,6 +29,7 @@
 		cursor: pointer;
 		outline: none;
 		transition: 0.15s;
+		font-family: Montserrat, sans-serif;
 
 		&:disabled {
 			cursor: not-allowed;
