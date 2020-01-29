@@ -50,7 +50,7 @@ export default {
   .join-show {
     height: 100%;
     animation-name: join-show;
-    animation-duration: 3s;
+    animation-duration: 1s;
     animation-delay: .7s;
     animation-timing-function: ease-out;
     animation-fill-mode: forwards;

@@ -4,7 +4,6 @@
 		<Header
 			id="header"
 			@shuffle="shuffleArray(routes)"
-			:class="{ 'opacity-hide': !isFirstScreen }"
 			class="main-screen__header"
 		/>
 		<div id="title" v-if="cityName" class="main-screen__title title-show">From {{cityName}}</div>
@@ -22,18 +21,16 @@
 					/>
 				</div>
 			</div>
-			<SocialIcons id="social" :class="{ 'opacity-hide': !isFirstScreen }" class="main-screen__social-icons"/>
+			<SocialIcons id="social" class="main-screen__social-icons"/>
 			<Button
 				id="button"
 				text="What else ya got?"
-				:class="{ 'opacity-hide': !isFirstScreen }"
 				class="main-screen__button"
 				@click="shuffleArray(routes)"
 			/>
 		</div>
 		<div
 			id="arrow"
-			:class="{ 'opacity-hide': !isFirstScreen }"
 			class="main-screen__arrow"
 			@click="moveBottom()"
 		></div>

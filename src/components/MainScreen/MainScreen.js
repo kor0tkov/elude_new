@@ -67,7 +67,16 @@ export default {
         moveBottom() {
             document.getElementsByTagName('html')[0].scrollTop = 1;
         },
-        handleScroll() {
+        testMethod() {
+            alert('test');
+        },
+    },
+    mounted() {
+        function handleScroll(direction) {
+            if (direction === null) {
+                return;
+            }
+
             const app = document.getElementById('app');
             const plane = document.getElementById('plane');
             const title = document.getElementById('title');
@@ -75,55 +84,105 @@ export default {
             const clouds_1 = document.getElementById('clouds_1');
             const cardsContainer = document.getElementsByClassName('main-screen__cards')[0];
 
+            if (direction === 'top') {
+                if (app) {
+                    app.classList.remove('second-screen');
+                    app.classList.add('first-screen');
+                }
+                if (cardsContainer) {
+                    cardsContainer.classList.add("cards-show-up");
+                    cardsContainer.classList.remove("cards-hide");
+                }
+                if (title) {
+                    title.classList.add("title-show");
+                    title.classList.remove("title-hide");
+                }
+                if (plane) {
+                    plane.classList.add("plane-transform");
+                    plane.classList.remove("plane-hide");
+                }
+                if (clouds_1) {
+                    clouds_1.classList.add("clouds-transform-up");
+                    clouds_1.classList.remove("clouds-transform-down");
+                }
+                if (join) {
+                    join.classList.add("join-hide");
+                    join.classList.remove("join-show");
+                }
 
-            if (window.scrollY === 0) {
-                cardsContainer.classList.add("cards-show-up");
-                if (title) title.classList.add("title-show");
-                plane.classList.add("plane-transform");
-                clouds_1.classList.add("clouds-transform-up");
-                join.classList.add("join-hide");
+                window.isFirstScreen = true;
+            } else if (direction === 'bottom') {
+                if (app) {
+                    app.classList.remove('first-screen');
+                    app.classList.add('second-screen');
+                }
+                if (title) {
+                    title.classList.add("title-hide");
+                    title.classList.remove("title-show");
+                }
+                if (cardsContainer) {
+                    cardsContainer.classList.add("cards-hide");
+                    cardsContainer.classList.remove("cards-show-up");
+                }
+                if (join) {
+                    join.classList.add("join-show");
+                    join.classList.remove("join-hide");
+                }
+                if (plane) {
+                    plane.classList.add("plane-hide");
+                    plane.classList.remove("plane-transform");
+                }
+                if (clouds_1) {
+                    clouds_1.classList.remove("clouds-transform-up");
+                    clouds_1.classList.add("clouds-transform-down");
+                }
 
-                cardsContainer.classList.remove("cards-hide");
-                if (title) title.classList.remove("title-hide");
-                app.classList.remove('second-screen');
-                join.classList.remove("join-show");
-                clouds_1.classList.remove("clouds-transform-down");
-                plane.classList.remove("plane-hide");
-                this.isFirstScreen = true;
-            }
-            if (window.scrollY >= 1) {
-                cardsContainer.classList.add("cards-hide");
-                if (title) title.classList.add("title-hide");
-                join.classList.add("join-show");
-                app.classList.add('second-screen');
-                plane.classList.add("plane-hide");
-                clouds_1.classList.add("clouds-transform-down");
-                this.isFirstScreen = false;
-
-                cardsContainer.classList.remove("cards-show-up");
-                if (title) title.classList.remove("title-show");
-                plane.classList.remove("plane-transform");
-                clouds_1.classList.remove("clouds-transform-up");
-                join.classList.remove("join-hide");
-
+                window.isFirstScreen = false;
             }
         }
-    },
-    mounted() {
-        document.addEventListener('scroll', this.handleScroll);
-        // if (document.addEventListener) {
-        //     if ('onwheel' in document) {
-        //         // IE9+, FF17+
-        //         document.addEventListener("wheel", this.handleScroll);
-        //     } else if ('onmousewheel' in document) {
-        //         // устаревший вариант события
-        //         document.addEventListener("mousewheel", this.handleScroll);
-        //     } else {
-        //         // Firefox < 17
-        //         document.addEventListener("MozMousePixelScroll", this.handleScroll);
-        //     }
-        // } else { // IE8-
-        //     document.attachEvent("onmousewheel", this.handleScroll);
-        // }
+
+        if (window.innerWidth < 980) {
+            let touchsurface = document.getElementById('app'),
+                startY,
+                dist = 0,
+                elapsedTime,
+                allowedTime = 100,
+                startTime;
+            window.addEventListener('load', function () {
+
+                touchsurface.addEventListener('touchstart', function (e) {
+                    const touchobj = e.changedTouches[0];
+                    startY = touchobj.pageY;
+                    startTime = new Date().getTime(); // время контакта с поверхностью сенсора
+                }, false);
+
+                touchsurface.addEventListener('touchend', function (e) {
+                    const touchobj = e.changedTouches[0];
+                    dist = touchobj.pageY - startY; // получаем пройденную дистанцию
+                    elapsedTime = (new Date().getTime() - startTime) >= allowedTime; // узнаем пройденное время
+                    const swipeDirection = () => {
+                        if (elapsedTime) {
+                            if (dist > 60) return 'top';
+                            else if (dist < -60) return 'bottom';
+                        }
+                    };
+                    if (!swipeDirection()) {
+                        return;
+                    } else {
+                        handleScroll(swipeDirection());
+                        e.preventDefault();
+                    }
+                }, false)
+
+            }, false)
+        } else {
+            document.addEventListener('scroll', function () {
+                if (window.scrollY === 0) {
+                    handleScroll('top')
+                } else {
+                    handleScroll('bottom')
+                }
+            });
+        }
     }
 };

@@ -79,8 +79,12 @@
 
 	html,
 	body {
-		overflow-x: hidden;
+		overflow: hidden;
 		max-width: 100%;
+
+		@media (min-width: 980px) {
+			overflow-y: auto;
+		}
 	}
 
 	html,
