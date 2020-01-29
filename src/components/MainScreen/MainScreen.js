@@ -141,7 +141,7 @@ export default {
             }
         }
 
-        if (window.innerWidth < 980) {
+        if (window.innerWidth < 880) {
             let touchsurface = document.getElementById('app'),
                 startY,
                 dist = 0,
@@ -177,10 +177,10 @@ export default {
             }, false)
         } else {
             document.addEventListener('scroll', function () {
-                if (window.scrollY === 0) {
-                    handleScroll('top')
+                if (pageYOffset > 0) {
+                    handleScroll('bottom');
                 } else {
-                    handleScroll('bottom')
+                    handleScroll('top');
                 }
             });
         }

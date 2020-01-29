@@ -53,13 +53,12 @@ export default {
     }
   }
   &__button {
-    @media only screen and (min-width: 769px) {
+    display: none;
+    @media only screen and (min-width: 880px) {
+      display: block;
       width: 235px;
       height: 50px;
       font-size: 16px;
-    }
-    @media only screen and (max-width: 768px) {
-      display: none;
     }
 
     .second-screen & {
@@ -68,7 +67,7 @@ export default {
     }
   }
   &__social-icons {
-    @media only screen and (min-width: 769px) {
+    @media only screen and (min-width: 880px) {
       display: none;
     }
   }

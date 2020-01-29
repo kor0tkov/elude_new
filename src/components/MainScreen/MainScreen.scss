@@ -75,11 +75,13 @@
   &__section {
     position: relative;
     z-index: 5;
-    @media only screen and (min-width: 769px) {
+    flex-wrap: wrap;
+    @media only screen and (min-width: 880px) {
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
       z-index: 11;
+      flex-wrap: nowrap;
     }
   }
 
@@ -87,20 +89,15 @@
     padding: 0 20px;
     margin-left: -20px;
     transition: .25s;
-    @media only screen and (min-width: 768px) {
+    @media only screen and (min-width: 880px) {
       height: 350px;
       display: flex;
       align-items: flex-end;
     }
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 880px) {
       width: calc(100% + 20px);
       //overflow-x: scroll;
       //-webkit-overflow-scrolling: touch;
-    }
-    @media only screen and (width: 768px) {
-      height: 350px;
-      width: 100%;
-      overflow: hidden;
     }
 
     .first-screen & {
@@ -177,12 +174,10 @@
 
   &__social-icons {
     transition: .5s;
-    @media only screen and (min-width: 769px) {
+    display: none;
+    @media only screen and (min-width: 880px) {
       display: flex;
       flex-wrap: wrap;
-    }
-    @media only screen and (max-width: 768px) {
-      display: none;
     }
 
     .first-screen & {
@@ -196,21 +191,16 @@
 
   &__button {
     transition: .5s;
-    @media only screen and (min-width: 769px) {
+    @media only screen and (min-width: 880px) {
       display: none;
     }
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 880px) {
       position: relative;
       z-index: 5;
       width: 100%;
       height: 50px;
       font-size: 16px;
       margin-top: 20px;
-    }
-    @media only screen and (width: 768px) {
-      width: 30%;
-      left: 50%;
-      transform: translateX(-50%);
     }
 
     .first-screen & {
