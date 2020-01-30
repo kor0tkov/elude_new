@@ -1,7 +1,6 @@
 <script>
     import Input from "@/components/base/Input";
     import Button from "@/components/base/Button";
-    import {getCityFromConfig} from "../../public/plugins/city";
 
     export default {
         name: "Modal",
@@ -88,7 +87,7 @@
             },
         },
         created() {
-            const cityName = getCityFromConfig();
+            const cityName = window.city || '';
             if (cityName)
                 this.prepareCityInputValue(cityName);
         }
