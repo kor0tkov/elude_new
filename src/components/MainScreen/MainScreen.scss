@@ -112,10 +112,10 @@
   &__cards {
     display: flex;
     @media only screen and (min-width: 768px) {
-      height: 240px;
+      //height: 240px;
     }
     @media only screen and (max-width: 769px) {
-      height: 220px;
+      //height: 220px;
       overflow-x: scroll;
       overflow-y: hidden;
       -webkit-overflow-scrolling: touch;

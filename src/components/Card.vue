@@ -49,19 +49,11 @@
 		padding: 20px;
 		user-select: none;
 		outline: none;
-		@media only screen and (min-width: 769px) {
-			width: 180px;
-			height: 220px;
-		}
+		width: 180px;
+		height: auto !important;
 		@media only screen and (max-width: 768px) {
-			width: 170px;
-      height: 220px;
 			flex: 0 0 auto;
 		}
-    @media only screen and (width: 768px) {
-      width: 170px;
-      height: 220px;
-    }
 
 		&__date {
 			display: block;
@@ -77,12 +69,13 @@
 
 		&__city {
 			display: block;
-			font-size: 28px;
+			font-size: 22px;
 			font-weight: 700;
 			color: #706163;
-			max-height: 112px;
-			word-break: break-all;
+			line-height: 40px;
+			height: 80px;
 			overflow: hidden;
+			margin-bottom: 10px;
 		}
 
 		&__section {
