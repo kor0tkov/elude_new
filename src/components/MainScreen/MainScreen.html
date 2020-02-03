@@ -9,7 +9,7 @@
 		<div id="title" v-if="cityName" class="main-screen__title title-show">From {{cityName}}</div>
 		<div class="main-screen__section">
 			<div class="main-screen__cards-inner">
-				<div v-if="quickRoutes && quickRoutes.length > 0" class="main-screen__cards cards-show-up">
+				<div v-if="quickRoutes && quickRoutes.length > 0" class="main-screen__cards">
 					<Card
 						v-for="(route, idx) in quickRoutes"
 						:key="idx"

@@ -24,35 +24,42 @@
 
 <template>
 	<div class="card">
-		<div class="card__wrapper">
-			<span class="card__date">{{ date }}</span>
-			<span class="card__city">{{ city }}</span>
+		<div class="card__inner">
+			<div class="card__wrapper">
+				<span class="card__date">{{ date }}</span>
+				<span class="card__city">{{ city }}</span>
+			</div>
+			<div class="card__section">
+				<span class="card__cost">${{ cost }}</span>
+				<div class="card__button"/>
+			</div>
+			<a :href="link" target="_blank" class="card__link"/>
 		</div>
-		<div class="card__section">
-			<span class="card__cost">${{ cost }}</span>
-			<div class="card__button"/>
-		</div>
-		<a :href="link" target="_blank" class="card__link"/>
 	</div>
 </template>
 
 <style lang="scss">
-	.card {
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		position: relative;
-		background-color: #ffffff;
-		border-radius: 4px;
-		box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.05);
-		box-sizing: border-box;
-		padding: 20px;
+	.card,
+	.card__inner {
 		user-select: none;
 		outline: none;
-		width: 180px;
 		height: auto !important;
-		@media only screen and (max-width: 768px) {
-			flex: 0 0 auto;
+
+		&__inner {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			position: relative;
+			border-radius: 4px;
+			box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.05);
+			background-color: #fff;
+			padding: 20px;
+			width: 180px;
+			box-sizing: border-box;
+
+			@media only screen and (max-width: 768px) {
+				flex: 0 0 auto;
+			}
 		}
 
 		&__date {
@@ -72,7 +79,7 @@
 			font-size: 22px;
 			font-weight: 700;
 			color: #706163;
-			line-height: 40px;
+			line-height: 1.25;
 			height: 80px;
 			overflow: hidden;
 			margin-bottom: 10px;

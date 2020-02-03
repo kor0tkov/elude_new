@@ -4,9 +4,9 @@
 }
 
 .title-hide {
-  opacity: 0;
-  transform: translateX(-200%);
-  transition: .7s;
+  //opacity: 0;
+  //transform: translateX(-200%);
+  //transition: .7s;
 }
 
 
@@ -56,27 +56,9 @@
 .cards-hide {
 
   .main-screen__card {
-    transition: .7s;
-    opacity: 0;
-    z-index: -1;
-  }
-}
-
-// появление карточек при смене экранов
-.cards-show-up {
-  pointer-events: all;
-  animation-name: cards-show-up;
-  animation-timing-function: ease-out;
-  animation-duration: 2s;
-  @keyframes cards-show-up {
-    from {
-      opacity: 0;
-      transform: translateY(100%);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    //transition: .7s;
+    //opacity: 0;
+    //z-index: -1;
   }
 }
 

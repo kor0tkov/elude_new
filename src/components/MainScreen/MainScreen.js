@@ -65,6 +65,7 @@ export default {
             arr.sort(() => Math.random() - 0.5)
         },
         moveBottom() {
+            this.isFirstScreen = false;
             document.getElementsByTagName('html')[0].scrollTop = 1;
         },
         testMethod() {
@@ -72,6 +73,7 @@ export default {
         },
     },
     mounted() {
+        const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent);
         function handleScroll(direction) {
             if (direction === null) {
                 return;
@@ -79,23 +81,13 @@ export default {
 
             const app = document.getElementById('app');
             const plane = document.getElementById('plane');
-            const title = document.getElementById('title');
             const join = document.getElementById('join-container');
             const clouds_1 = document.getElementById('clouds_1');
-            const cardsContainer = document.getElementsByClassName('main-screen__cards')[0];
 
             if (direction === 'top') {
                 if (app) {
                     app.classList.remove('second-screen');
                     app.classList.add('first-screen');
-                }
-                if (cardsContainer) {
-                    cardsContainer.classList.add("cards-show-up");
-                    cardsContainer.classList.remove("cards-hide");
-                }
-                if (title) {
-                    title.classList.add("title-show");
-                    title.classList.remove("title-hide");
                 }
                 if (plane) {
                     plane.classList.add("plane-transform");
@@ -116,14 +108,6 @@ export default {
                     app.classList.remove('first-screen');
                     app.classList.add('second-screen');
                 }
-                if (title) {
-                    title.classList.add("title-hide");
-                    title.classList.remove("title-show");
-                }
-                if (cardsContainer) {
-                    cardsContainer.classList.add("cards-hide");
-                    cardsContainer.classList.remove("cards-show-up");
-                }
                 if (join) {
                     join.classList.add("join-show");
                     join.classList.remove("join-hide");
@@ -141,7 +125,10 @@ export default {
             }
         }
 
-        if (window.innerWidth < 880) {
+        const triggerButton = document.getElementById('arrow');
+        triggerButton.addEventListener('click', () => handleScroll('bottom'));
+
+        if (window.innerWidth < 980 && isMobileDevice) {
             let touchsurface = document.getElementById('app'),
                 startY,
                 dist = 0,
@@ -162,8 +149,8 @@ export default {
                     elapsedTime = (new Date().getTime() - startTime) >= allowedTime; // узнаем пройденное время
                     const swipeDirection = () => {
                         if (elapsedTime) {
-                            if (dist > 60) return 'top';
-                            else if (dist < -60) return 'bottom';
+                            if (dist > 100) return 'top';
+                            else if (dist < -100) return 'bottom';
                         }
                     };
                     if (!swipeDirection()) {
@@ -176,6 +163,8 @@ export default {
 
             }, false)
         } else {
+            const htmlEl = document.getElementsByTagName('html')[0];
+            htmlEl.style.overflowY = 'auto';
             document.addEventListener('scroll', function () {
                 if (pageYOffset > 0) {
                     handleScroll('bottom');
