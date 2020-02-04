@@ -168,6 +168,10 @@ export default {
     left: calc(50% - 150px);
     transition: .5s;
 
+    @media (max-width: 768px) {
+      display: none;
+    }
+
     .first-screen & {
       opacity: 0;
       z-index: -1;
