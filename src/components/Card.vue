@@ -39,6 +39,12 @@
 </template>
 
 <style lang="scss">
+	.card {
+
+		@media only screen and (min-width: 768px) {
+			width: calc(25% - 15px);
+		}
+	}
 	.card,
 	.card__inner {
 		user-select: none;
@@ -54,10 +60,10 @@
 			box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.05);
 			background-color: #fff;
 			padding: 20px;
-			width: 180px;
 			box-sizing: border-box;
 
 			@media only screen and (max-width: 768px) {
+				width: 180px;
 				flex: 0 0 auto;
 			}
 		}
@@ -83,6 +89,10 @@
 			height: 80px;
 			overflow: hidden;
 			margin-bottom: 10px;
+
+			@media (min-width: 880px) {
+				font-size: 28px;
+			}
 		}
 
 		&__section {

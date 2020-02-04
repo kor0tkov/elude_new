@@ -21,12 +21,12 @@ export default {
 <template>
   <div class="header">
     <img src="../assets/img/logo/logo.svg" class="header__logo" />
+    <SocialIcons class="header__social-icons" />
     <Button
       text="What else ya got?"
       class="header__button"
       @click="$emit('shuffle')"
     />
-    <SocialIcons class="header__social-icons" />
   </div>
 </template>
 
@@ -37,6 +37,7 @@ export default {
   align-items: center;
   @media only screen and (min-width: 769px) {
     padding: 35px 0;
+    position: absolute;
   }
   @media only screen and (max-width: 768px) {
     padding: 20px 0;
@@ -63,12 +64,16 @@ export default {
 
     .second-screen & {
       opacity: 0;
+      z-index: -1;
+      pointer-events: none;
       transition: .25s;
     }
   }
   &__social-icons {
     @media only screen and (min-width: 880px) {
-      display: none;
+      /*display: none;*/
+      margin-left: auto;
+      margin-right: 40px;
     }
   }
 }

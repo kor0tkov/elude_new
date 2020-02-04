@@ -16,13 +16,13 @@
   animation-duration: 2s;
   animation-direction: alternate;
   animation-timing-function: ease;
-  @media only screen and (min-width: 1281px) {
+  @media only screen and (min-width: 768px) {
     @keyframes title-show {
       from {
-        left: -100%;
+        transform: translateX(-100%);
       }
       to {
-        left: 200px;
+        transform: translateX(0);
       }
     }
   }

@@ -66,6 +66,7 @@
 	html {
 		overflow: hidden;
 		max-width: 100%;
+		min-width: 320px;
 
 		@media (min-width: 980px) {
 			overflow-y: auto;
