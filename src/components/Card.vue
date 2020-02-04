@@ -86,12 +86,13 @@
 			font-weight: 700;
 			color: #706163;
 			line-height: 1.25;
-			height: 80px;
+			height: 60px;
 			overflow: hidden;
 			margin-bottom: 10px;
 
 			@media (min-width: 880px) {
 				font-size: 28px;
+				height: 80px;
 			}
 		}
 

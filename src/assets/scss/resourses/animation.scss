@@ -184,12 +184,9 @@
     animation-name: move-clouds-left;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
-    animation-duration: 20s;
-    @media only screen and (min-width: 769px) {
-      animation-duration: 20s;
-    }
-    @media only screen and (max-width: 768px) {
-      animation-duration: 40s;
+    animation-duration: 40s;
+    @media only screen and (min-width: 768px) {
+      animation-duration: 50s;
     }
     @keyframes move-clouds-left {
       from {
