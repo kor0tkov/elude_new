@@ -2,9 +2,10 @@
 import Container from "@/components/base/Container";
 import Button from "@/components/base/Button";
 import Modal from "@/components/Modal";
+import Copyright from "./base/copyright";
 export default {
   name: "Join",
-  components: {Button, Container, Modal},
+  components: {Copyright, Button, Container, Modal},
   data() {
     return {
       showModal: false,
@@ -39,6 +40,7 @@ export default {
           class="join__modal"
         />
     </transition>
+    <copyright class="join__copyright"/>
   </div>
 </template>
 
@@ -158,6 +160,23 @@ export default {
   .fade-enter, .fade-leave-to {
     opacity: 0;
     transform: translateY(-25px);
+  }
+
+  &__copyright {
+    position: absolute;
+    bottom: 40px;
+    left: calc(50% - 150px);
+    transition: .5s;
+
+    .first-screen & {
+      opacity: 0;
+      z-index: -1;
+    }
+
+    .second-screen & {
+      opacity: 1;
+      z-index: 101;
+    }
   }
 }
 </style>
